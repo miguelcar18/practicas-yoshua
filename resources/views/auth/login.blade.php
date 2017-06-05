@@ -1,0 +1,106 @@
+@extends('guest_layouts.default')
+
+    @section('content')
+    <div class="container">
+
+        @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
+            <div class="logo text-center">
+                <img src="/{!! config('constant.upload_path.logo').config('config.logo') !!}" class="logo-image" alt="Logo">
+            </div>
+        @endif
+
+        @if(!getMode())
+            @include('common.notification',['message' => 'You are free to perform all actions. The demo gets reset in every 30 minutes.' ,'type' => 'danger'])
+            @include('common.notification',['message' => 'Launching Offer, Grab Larafy only at $14 before 5th October. Price from 6th October $34.' ,'type' => 'success'])
+        @endif
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>{!! trans('messages.user') !!}</strong> {!! trans('messages.login') !!}</h3>
+                    </div>
+                    <div class="panel-body">
+                    @if(!getMode())
+                    <div class="row" style="margin-bottom: 15px;">
+                        <h4 class="text-center">For Demo Purpose</h4>
+                        <div class="col-md-6">
+                            <a href="#" data-username="admin" data-email="support@wmlab.in" data-password="123456" class="btn btn-block btn-primary login-as">Login as Admin</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" data-username="user" data-email="accounts@wmlab.in" data-password="123456" class="btn btn-block btn-danger login-as">Login as User</a>
+                        </div>
+                    </div>
+                    @endif
+                        <form role="form" action="{!! URL::to('/login') !!}" method="post" class="login-form" id="login-form" data-submit="noAjax">
+                            {!! csrf_field() !!}
+                            <fieldset>
+                                @if(config('config.login'))
+                                <div class="form-group">
+                                    <div class="input-group margin-bottom-sm">
+                                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                        <input type="text" name="email" id="email" class="form-control" placeholder="{!! trans('messages.email') !!}">
+                                    </div>
+                                </div>
+                                @else
+                                <div class="form-group">
+                                    <div class="input-group margin-bottom-sm">
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                                        <input type="text" name="username" id="username" class="form-control" placeholder="{!! trans('messages.username') !!}">
+                                    </div>
+                                </div>
+                                @endif
+                                <div class="form-group">
+                                    <div class="input-group margin-bottom-sm">
+                                        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="{!! trans('messages.password') !!}">
+                                    </div>
+                                </div>
+                                @if(config('config.enable_remember_me'))
+                                <div class="form-group">
+                                    <input name="remember" type="checkbox" class="switch-input" data-size="mini" data-on-text="Yes" data-off-text="No" value="1"> {!! trans('messages.remember_me') !!}
+                                </div>
+                                @endif
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-block btn-success">{!! trans('messages.login') !!}</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            @if(config('config.enable_forgot_password'))
+                                            <a href="/password/reset" class="btn btn-block btn-info">{!! trans('messages.forgot').' '.trans('messages.password') !!}?</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                @if(config('config.enable_user_registration'))
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="/register" class="btn btn-block btn-danger">{!! trans('messages.create').' '.trans('messages.account') !!}?</a>
+                                    </div>
+                                </div>
+                                @endif
+                                
+                            </fieldset>
+                        </form>
+
+                        @if(config('config.enable_social_login'))
+                        <hr class="login-social-or"/>
+                        <div class="text-center">
+                            <p style="font-weight:bold;">Or</p>
+                            @foreach(config('constant.social_login_provider') as $provider)
+                                @if(config('config.enable_'.$provider.'_login'))
+                                <a class="btn btn-social btn-{{$provider.(($provider == 'google') ? '-plus' : '')}}" href="/auth/{{$provider}}">
+                                    <i class="fa fa-{{$provider}}"></i> {{toWord($provider)}}
+                                </a>
+                                @endif
+                            @endforeach
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="credit" style="margin-top: 10px;">{{config('config.credit')}}</div>
+    </div>
+    @stop
