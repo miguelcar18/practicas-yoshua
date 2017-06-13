@@ -1,54 +1,74 @@
-@extends('guest_layouts.default')
+@extends('layouts.materialize.guest')
 
-    @section('content')
-    <div class="container">
-        @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
+@section('content')
+<form role="form" action="{!! URL::to('/password/reset') !!}" method="post" class="login-form" id="reset-password-form" data-submit="noAjax">
+    <input type="hidden" name="token" value="{{ $token }}">
+    {!! csrf_field() !!}
+    <div class="row">
+        <div class="input-field col s12 center">
+            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+
+            @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
             <div class="logo text-center">
-                <img src="/{!! config('constant.upload_path.logo').config('config.logo') !!}" class="logo-image" alt="Logo">
+                <img src="/{!! config('constant.upload_path.logo').config('config.logo') !!}" class="circle responsive-img valign profile-image-login" alt="Logo">
             </div>
-        @endif
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><strong>{!! trans('messages.reset') !!}</strong> {!! trans('messages.password') !!}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" action="{!! URL::to('/password/reset') !!}" method="post" class="reset-password-form" id="reset-password-form" data-submit="noAjax">
-                        <input type="hidden" name="token" value="{{ $token }}">
-                            {!! csrf_field() !!}
-                            <fieldset>
-                                <div class="form-group">
-                                    <div class="input-group margin-bottom-sm">
-                                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="{!! trans('messages.email') !!}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" id="password" class="form-control text-input {{(config('config.enable_password_strength_meter') ? 'password-strength' : '')}}" placeholder="{!! trans('messages.new_password') !!}">
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group margin-bottom-sm">
-                                        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
-                                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control text-input" placeholder="{!! trans('messages.new_confirm_password') !!}">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                             <button type="submit" class="btn btn-block btn-success">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="/login" class="btn btn-block btn-info">{!! trans('messages.back_to').' '.trans('messages.login') !!}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            @endif
+            <p class="center login-form-text">Material Design Admin Template</p>
+
+
+
         </div>
-        <div class="credit">{{config('config.credit')}}</div>
     </div>
-    @stop
+    <div class="row margin">
+        <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+           <!-- <input id="username" type="text">-->
+            <input type="text" name="email" id="email">
+
+            <label for="email" class="center-align">{!! trans('messages.email') !!}</label>
+        </div>
+    </div>
+    <div class="row margin">
+        <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <!--<input id="password" type="password" >-->
+            <input type="password" name="password" id="password" text-input {{(config('config.enable_password_strength_meter') ? 'password-strength' : '')}}" ') !!}">
+                   <label for="password">{!! trans('messages.password') !!}</label>
+
+        </div>
+    </div>
+
+    <div class="row margin">
+        <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <!--<input id="password" type="password" >-->
+            <input type="password" name="password_confirmation" id="password_confirmation" >
+            <label for="password">{!! trans('messages.password') !!}</label>
+
+        </div>
+    </div>
+    <!--<div class="row">          
+        <div class="input-field col s12 m12 l12  login-text">
+            <input type="checkbox" id="remember-me" />
+            <label for="remember-me">Remember me</label>
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="input-field col s12">
+            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
+            <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="input-field col s6 m6 l6">
+            <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
+        </div>-->
+
+    </div>
+
+</form>
+
+
+
+@stop
+

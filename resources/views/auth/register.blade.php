@@ -1,39 +1,36 @@
-@extends('guest_layouts.default')
+@extends('layouts.materialize.guest')
 
-    @section('content')
-    <div class="container">
-        @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
+@section('content')
+<form role="form" method="POST" action="{{ url('/user') }}" id="user-registration-form" >
+    {{ csrf_field() }}
+     
+    <div class="row">
+        <div class="input-field col s12 center">
+            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+
+            @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
             <div class="logo text-center">
-                <img src="/{!! config('constant.upload_path.logo').config('config.logo') !!}" class="logo-image" alt="Logo">
+                <img src="/{!! config('constant.upload_path.logo').config('config.logo') !!}" class="circle responsive-img valign profile-image-login" alt="Logo">
             </div>
-        @endif
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><strong>{!! trans('messages.user') !!}</strong> {!! trans('messages.registration') !!}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" method="POST" action="{{ url('/user') }}" id="user-registration-form" >
-                            {{ csrf_field() }}
-                            <fieldset>
-                                @include('auth._register_form')
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="submit" class="btn btn-block btn-success">{!! trans('messages.register') !!}</button>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <a href="/login" class="btn btn-block btn-info">{!! trans('messages.back_to').' '.trans('messages.login') !!}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            @endif
+            <p class="center login-form-text">Material Design Admin Template</p>
+
+
+
         </div>
-        <div class="credit">{{config('config.credit')}}</div>
     </div>
-    @stop
+   
+    @include('auth._register_form')
+    <div class="row">
+        <div class="input-field col s12">
+            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
+            <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.register') !!}</button>
+        </div>
+    </div>
+
+
+
+</div>
+
+</form>
+@stop
