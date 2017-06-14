@@ -1,4 +1,4 @@
-    <div id="js-var" style="visibility:none;" 
+   {{-- <div id="js-var" style="visibility:none;" 
         data-toastr-position="{{config('config.notification_position')}}"
         data-something-error-message="{{trans('messages.something_error_message')}}"
         data-character-remaining="{{trans('messages.character_remaining')}}"
@@ -46,4 +46,4 @@
     {!! Html::script('assets/js/wmlab.js') !!}
     {!! Html::script('assets/js/app.js') !!}
 </body>
-</html>
+</html>--}}

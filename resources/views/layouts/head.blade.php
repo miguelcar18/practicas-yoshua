@@ -11,13 +11,13 @@
 
     {!! Html::style('assets/vendor/bootstrap/css/bootstrap.min.css') !!}
     {!! Html::style('assets/vendor/metisMenu/metisMenu.min.css') !!}
-    @if($direction == 'ltr')
+    {{--@if($direction == 'ltr')
         {!! Html::style('assets/css/style.min.css') !!}
     @else
         {!! Html::style('assets/css/style-rtl.min.css') !!}
         {!! Html::style('assets/css/bootstrap-rtl.css') !!}
         {!! Html::style('assets/css/bootstrap-flipped.css') !!}
-    @endif
+    @endif--}}
     {!! Html::style('assets/css/bootstrap.vertical-tabs.min.css') !!}
     {!! Html::style('assets/vendor/font-awesome/css/font-awesome.min.css') !!}
     {!! Html::style('assets/vendor/switch/bootstrap-switch.min.css') !!}
@@ -27,9 +27,9 @@
     {!! Html::style('assets/vendor/select2/select2-bootstrap.min.css') !!}
     {!! Html::style('assets/vendor/datatables/datatables.min.css') !!}
     {!! Html::style('assets/vendor/summernote/summernote.css') !!}
-    @if(in_array('calendar',$assets))
+    {{--@if(in_array('calendar',$assets))
         {!! Html::style('assets/vendor/calendar/fullcalendar.min.css') !!}
-    @endif
+    @endif--}}
     {!! Html::style('assets/vendor/icheck/skins/flat/blue.css') !!}
     {!! Html::style('assets/vendor/tags/tags.css') !!}
     {!! Html::style('assets/css/custom.css') !!}

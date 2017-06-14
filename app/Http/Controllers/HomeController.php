@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function index()
     {
-
+/*
         $all_birthdays = \App\Profile::whereBetween( DB::raw('dayofyear(date_of_birth) - dayofyear(curdate())'), [0,config('config.celebration_days')])
             ->orWhereBetween( DB::raw('dayofyear(curdate()) - dayofyear(date_of_birth)'), [0,config('config.celebration_days')])
             ->orderBy('date_of_birth','asc')
@@ -74,7 +74,9 @@ class HomeController extends Controller
             $events[] = array('title' => $title, 'start' => $start, 'color' => $color, 'url' => $url);
         }
         $assets = ['calendar'];
-        return view('home',compact('assets','events','birthdays','celebrations'));
+        //return view('home',compact('assets','events','birthdays','celebrations'));
+        */
+        return view('home');
     }
 
     public function tnc(){

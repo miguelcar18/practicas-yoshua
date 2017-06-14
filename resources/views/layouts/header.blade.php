@@ -1,4 +1,4 @@
-            <div class="navbar-header">
+           {{-- <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -52,4 +52,4 @@
             </ul>
             <form id="logout-form" action="/logout" method="POST" style="display: none;">
                 {{ csrf_field() }}
-            </form>
+            </form>--}}

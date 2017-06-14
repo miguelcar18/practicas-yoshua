@@ -5,7 +5,7 @@
     {!! csrf_field() !!}
     <div class="row">
         <div class="input-field col s12 center">
-            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+
 
             @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
             <div class="logo text-center">
@@ -22,14 +22,13 @@
         <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
            <!-- <input id="username" type="text">-->
-           <input type="email" name="email" id="email">
-           <label for="email" class="center-align">{!! trans('messages.email') !!}</label>
+            <input type="email" name="email" id="email">
+            <label for="email" class="center-align">{!! trans('messages.email') !!}</label>
         </div>
     </div>
-        
+
     <div class="row">
         <div class="input-field col s12">
-            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
             <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
 
         </div>
@@ -37,7 +36,7 @@
 
 
 
-    </div>
+</div>
 
 </form>
 

@@ -6,7 +6,6 @@
     {!! csrf_field() !!}
     <div class="row">
         <div class="input-field col s12 center">
-            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
 
             @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
             <div class="logo text-center">
@@ -22,7 +21,6 @@
     <div class="row margin">
         <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-           <!-- <input id="username" type="text">-->
             <input type="text" name="email" id="email">
 
             <label for="email" class="center-align">{!! trans('messages.email') !!}</label>
@@ -31,7 +29,6 @@
     <div class="row margin">
         <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <!--<input id="password" type="password" >-->
             <input type="password" name="password" id="password" text-input {{(config('config.enable_password_strength_meter') ? 'password-strength' : '')}}" ') !!}">
                    <label for="password">{!! trans('messages.password') !!}</label>
 
@@ -41,30 +38,21 @@
     <div class="row margin">
         <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <!--<input id="password" type="password" >-->
             <input type="password" name="password_confirmation" id="password_confirmation" >
             <label for="password">{!! trans('messages.password') !!}</label>
 
         </div>
     </div>
-    <!--<div class="row">          
-        <div class="input-field col s12 m12 l12  login-text">
-            <input type="checkbox" id="remember-me" />
-            <label for="remember-me">Remember me</label>
-        </div>
-    </div>-->
+
     <div class="row">
         <div class="input-field col s12">
-            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
+
             <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
         </div>
     </div>
-    <!--<div class="row">
-        <div class="input-field col s6 m6 l6">
-            <p class="margin medium-small"><a href="page-register.html">Register Now!</a></p>
-        </div>-->
 
-    </div>
+
+</div>
 
 </form>
 

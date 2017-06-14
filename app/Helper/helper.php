@@ -393,10 +393,13 @@ function getAvatar($id, $size = 60){
     $profile = $user->Profile;
     $name = $user->full_name;
     $tooltip = $name;
-    if(isset($profile->avatar))
-        return '<img src="/'.config('constant.upload_path.avatar').$profile->avatar.'" class="img-circle" style="width:'.$size.'px";" alt="User avatar" data-toggle="tooltip" title="'.$tooltip.'">';
-    else 
-        return '<p class="textAvatar" data-toggle="tooltip" title="'.$tooltip.'" data-image-size="'.$size.'">'.$name.'</p>';
+   
+    //if(isset($profile->avatar)){
+    if($profile->avatar!=null){
+         return '<img src="/'.config('constant.upload_path.avatar').$profile->avatar.'" class="circle responsive-img valign profile-image" style="width:'.$size.'px";" alt="User avatar" data-toggle="tooltip" title="'.$tooltip.'">';
+    //}else {
+      // return '<p class="mdi-action-assessment circle grenn" data-toggle="tooltip" title="'.$tooltip.'" data-image-size="'.$size.'">'.$name.'</p>';
+    }
 }
 
 function timeAgo($time_ago){

@@ -3,10 +3,10 @@
 @section('content')
 <form role="form" method="POST" action="{{ url('/user') }}" id="user-registration-form" >
     {{ csrf_field() }}
-     
+
     <div class="row">
         <div class="input-field col s12 center">
-            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+
 
             @if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo')))
             <div class="logo text-center">
@@ -19,11 +19,11 @@
 
         </div>
     </div>
-   
+
     @include('auth._register_form')
     <div class="row">
         <div class="input-field col s12">
-            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
+
             <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.register') !!}</button>
         </div>
     </div>
