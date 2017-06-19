@@ -62,6 +62,7 @@ class ConfigurationController extends Controller
         }
 
         $input = $request->all();
+        //dd($request->all());
         foreach($input as $key => $value){
             if(!in_array($key, config('constant.ignore_var'))){
                 $config = \App\Config::firstOrNew(['name' => $key]);
@@ -77,7 +78,7 @@ class ConfigurationController extends Controller
             $response = ['message' => trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration')->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));  
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));  
     }
 
     public function mail(Request $request){
@@ -136,6 +137,7 @@ class ConfigurationController extends Controller
             }
         }
         $input = $request->all();
+        
         foreach($input as $key => $value){
             if(!in_array($key, config('constant.ignore_var'))){
                 $config = \App\Config::firstOrNew(['name' => $key]);
@@ -150,7 +152,7 @@ class ConfigurationController extends Controller
             $response = ['message' => trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration#'.$config_type)->withSuccess(trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'));         
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'));         
     }
 
     public function sms(Request $request){
@@ -163,9 +165,9 @@ class ConfigurationController extends Controller
         }
 
         $validation = Validator::make($request->all(),[
-                'nextmo_api_key' => 'required',
-                'nextmo_api_secret' => 'required',
-                'nextmo_from_number' => 'required',
+                'nexmo_api_key' => 'required',
+                'nexmo_api_secret' => 'required',
+                'nexmo_from_number' => 'required',
                 ]);
 
         if($validation->fails()){
@@ -188,10 +190,10 @@ class ConfigurationController extends Controller
         $this->logActivity(['module' => 'sms_configuration','activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.sms').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
+            $response = ['message' => trans('sms').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration#'.$config_type)->withSuccess(trans('messages.sms').' '.trans('messages.configuration').' '.trans('messages.updated'));         
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.sms').' '.trans('messages.configuration').' '.trans('messages.updated'));         
     }
 
     public function logo(Request $request){
@@ -245,6 +247,6 @@ class ConfigurationController extends Controller
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
 
-        return redirect('/configuration')->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));
     }
 }

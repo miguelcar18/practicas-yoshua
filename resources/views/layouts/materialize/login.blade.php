@@ -55,11 +55,11 @@
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
 
-               
+               @yield('content')
             </div>
         </div>
 
- @yield('content')
+ 
 
         <!-- ================================================
           Scripts

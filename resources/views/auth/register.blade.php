@@ -1,4 +1,4 @@
-@extends('layouts.materialize.guest')
+@extends('layouts.materialize.login')
 
 @section('content')
 <form role="form" method="POST" action="{{ url('/user') }}" id="user-registration-form" >

@@ -1,4 +1,4 @@
-@extends('layouts.materialize.guest')
+@extends('layouts.materialize.login')
 @section('content')
 <form role="form" action="{!! URL::to('/login') !!}" method="post" class="login-form" id="reset-password-form" data-submit="noAjax">
 

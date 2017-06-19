@@ -17,6 +17,12 @@ $(document).ready(function(){
             var field = '<input type="hidden" name="'+$(this).attr('name')+'" value="0" />';
             $(formDetails).append(field);
         });
+        
+        $(formDetails).find('.checkbox-input').each(function() {
+          if(!$(this).is(':checked') && $(this).attr('data-off-value') == 0)
+            var field = '<input type="hidden" name="'+$(this).attr('name')+'" value="0" />';
+            $(formDetails).append(field);
+        });
    
         if (formDetails.attr('data-submit') != 'noAjax'){
           event.preventDefault();  
@@ -44,7 +50,7 @@ $(document).ready(function(){
         else {
             if(response.message)
             toastr.success(response.message,'',{"positionClass": toastr_position});
-            $('#myModal').modal('hide');
+            //$('#myModal').modal('hide');
             if($('.datatable').length > 0)
               reloadDataTable();
             if(formDetails.attr('data-refresh'))

@@ -15,12 +15,13 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
         <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>{!! config('config.application_name') ? : config('constants.default_title') !!}</title>
 
         <!-- Favicons-->
-        <link rel="icon" href="{{asset('materialize/images/favicon/favicon-32x32.png') }}" sizes="32x32">
+        <link rel="icon" href="{{asset('materialize/images/favicon/favicon-32x32.png')}}" sizes="32x32">
         <!-- Favicons-->
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('materialize/images/favicon/apple-touch-icon-152x152.png')}}">
+        <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
         <!-- For iPhone -->
         <meta name="msapplication-TileColor" content="#00bcd4">
         <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
@@ -28,20 +29,21 @@
 
 
         <!-- CORE CSS-->
-
         <link href="{{asset('materialize/css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/css/style.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <!-- Custome CSS-->    
         <link href="{{asset('materialize/css/custom/custom.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
-        <link href="{{asset('materialize/css/layouts/page-center.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
 
         <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
         <link href="{{asset('materialize/js/plugins/prism/prism.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
-
+        <!--<link href="{{asset('materialize/js/plugins/chartist-js/chartist.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">-->
+    <link href="{{asset('materialize/js/plugins/data-tables/css/jquery.dataTables.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+  
+      
     </head>
 
-    <body class="cyan">
+    <body>
         <!-- Start Page Loading -->
         <div id="loader-wrapper">
             <div id="loader"></div>        
@@ -50,42 +52,4 @@
         </div>
         <!-- End Page Loading -->
 
-
-
-        <div id="login-page" class="row">
-            <div class="col s12 z-depth-4 card-panel">
-
-               
-            </div>
-        </div>
-
- @yield('content')
-
-        <!-- ================================================
-          Scripts
-          ================================================ -->
-
-        <!-- jQuery Library -->
-        <script type="text/javascript" src="{{asset('materialize/js/plugins/jquery-1.11.2.min.js')}}"></script>
-        <!--materialize js-->
-        <script type="text/javascript" src="{{asset('materialize/js/materialize.js')}}"></script>
-        <!--prism-->
-        <script type="text/javascript" src="{{asset('materialize/js/plugins/prism/prism.js')}}"></script>
-        <!--scrollbar-->
-        <script type="text/javascript" src="{{asset('materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-
-        <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-        <script type="text/javascript" src="{{asset('materialize/js/plugins.js')}}"></script>
-        <!--custom-script.js - Add your own theme custom JS-->
-        <script type="text/javascript" src="{{asset('materialize/js/custom-script.js')}}"></script>
-
-
-        {!! Html::script('assets/vendor/toastr/toastr.min.js') !!}
-        @include('common.toastr_notification')
-
-
-
-
-    </body>
-
-</html>
+        <!-- //////////////////////////////////////////////////////////////////////////// -->

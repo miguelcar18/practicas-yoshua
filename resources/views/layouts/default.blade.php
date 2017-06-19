@@ -10,6 +10,8 @@
             @yield('breadcrumb')
             
             @include('common.message')
+            
+            <div class="divider"></div>
 
             @yield('content')
         </div>
@@ -22,3 +24,5 @@
         </div>
     </div>
 @include('layouts.foot')
+
+

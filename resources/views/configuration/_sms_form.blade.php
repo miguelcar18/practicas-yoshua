@@ -1,17 +1,37 @@
-			<div class="col-sm-6">
-			  <div class="form-group">
-			    {!! Form::label('nexmo_api_key','Nexmo API Key',[])!!}
-				{!! Form::input('text','nexmo_api_key',config('config.nexmo_api_key') ? config('config.hidden_value') : '',['class'=>'form-control','placeholder'=>'API Key'])!!}
-			  </div>
-			  <div class="form-group">
-			    {!! Form::label('nexmo_api_secret','Nexmo API Secret',[])!!}
-				{!! Form::input('text','nexmo_api_secret',config('config.nexmo_api_secret') ? config('config.hidden_value') : '',['class'=>'form-control','placeholder'=>'API Secret'])!!}
-			  </div>
-			  <div class="form-group">
-			    {!! Form::label('nexmo_from_number','Nexmo From Number',[])!!}
-				{!! Form::input('text','nexmo_from_number',config('config.nexmo_from_number') ? : '',['class'=>'form-control','placeholder'=>'From Number'])!!}
-			  </div>
-			  {!! Form::hidden('config_type','sms')!!}
-			{!! Form::submit(isset($buttonText) ? $buttonText : trans('messages.save'),['class' => 'btn btn-primary']) !!}
-			</div>
-			<div class="clear"></div>
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel">
+            <h4 class="header2">Sms</h4>
+            {!! Form::open(['route' => 'configuration.sms','role' => 'form', 'class'=>'config-sms-form','id' => 'config-sms-form','data-no-form-clear' => 1]) !!}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-field col s6">
+                        {!! Form::input('text','nexmo_api_key',config('config.nexmo_api_key') ? config('config.hidden_value') : '',[])!!}
+                        {!! Form::label('nexmo_api_key','Nexmo API Key',[])!!}
+                    </div>
+                    <div class="input-field col s6">
+                        {!! Form::input('text','nexmo_api_secret',config('config.nexmo_api_secret') ? config('config.hidden_value') : '',[])!!}
+                        {!! Form::label('nexmo_api_secret','Nexmo API Secret',[])!!}
+                    </div>
+                    <div class="input-field col s6">
+                        {!! Form::input('text','nexmo_from_number',config('config.nexmo_from_number') ? : '',[])!!}
+                        {!! Form::label('nexmo_from_number','Nexmo From Number',[])!!}
+                    </div>
+                    {!! Form::hidden('config_type','sms')!!}
+                </div>
+                <div class="clear"></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button class="btn cyan waves-effect waves-light right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+                            <i class="mdi-content-send right"></i>
+                        </button>
+                    </div>
+                    {!! Form::hidden('config_type','sms')!!}
+                </div>
+                {!! Form::close() !!}
+            </div>                
+        </div>
+
+    </div>
+
+</div>

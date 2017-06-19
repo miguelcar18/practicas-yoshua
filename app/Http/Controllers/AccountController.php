@@ -26,8 +26,8 @@ Class AccountController extends Controller{
     		//return redirect()->back()->withErrors('Please check your internet connection.');
 
     	//$data = verifyPurchase();
-    	
-    	
+
+
     	if($data['status'] == 'status')
     		return redirect('/');
 

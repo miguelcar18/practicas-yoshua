@@ -3,12 +3,15 @@ $(document).ready(function(){
 	$('.enable-show-hide').each(function(key,value){
 		var field_name = $(this).attr('name');
 		switchToggleShowHide(field_name);
+                
+                
 	});
 
 	function switchToggleShowHide(input_field){
 		if($('#'+input_field+'_field').length){
 			initSwitchToggleShowHide(input_field);
-			$('input[name="'+input_field+'"]').on('switchChange.bootstrapSwitch', function(event, state) {
+			//$('input[name="'+input_field+'"]').on('switchChange.bootstrapSwitch', function(event, state) {
+                        $('input[name="'+input_field+'"]').on('change', function(event, state) {
 				initSwitchToggleShowHide(input_field);
 			});
 		}
