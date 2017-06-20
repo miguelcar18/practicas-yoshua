@@ -47,15 +47,15 @@
                         <ul>
                             <li><a href="user">Users</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
             </ul>
         </li>
-        
-        
-        
+
+
+
 
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -187,7 +187,7 @@
                 </li>
                 <li class="bold"><a class="collapsible-header  waves-effect waves-cyan active"><i class="mdi-social-pages"></i> Pages</a>
                     <div class="collapsible-body">
-                        <ul>                                        
+                        <ul>
                             <li><a href="page-contact.html">Contact Page</a>
                             </li>
                             <li><a href="page-todo.html">ToDos</a>
@@ -209,7 +209,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li><a href="eCommerce-products-page.html">Products Page</a>
-                            </li>                                        
+                            </li>
                             <li><a href="eCommerce-pricing.html">Pricing Table</a>
                             </li>
                             <li><a href="eCommerce-invoice.html">Invoice</a>
@@ -219,7 +219,7 @@
                 </li>
                 <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-image-image"></i> Medias</a>
                     <div class="collapsible-body">
-                        <ul>                                        
+                        <ul>
                             <li><a href="media-gallary-page.html">Gallery Page</a>
                             </li>
                             <li><a href="media-hover-effects.html">Image Hover Effects</a>
@@ -229,17 +229,17 @@
                 </li>
                 <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> User</a>
                     <div class="collapsible-body">
-                        <ul>     
+                        <ul>
                             <li><a href="user-profile-page.html">User Profile</a>
-                            </li>                                   
+                            </li>
                             <li><a href="user-login.html">Login</a>
-                            </li>                                        
+                            </li>
                             <li><a href="user-register.html">Register</a>
                             </li>
                             <li><a href="user-forgot-password.html">Forgot Password</a>
                             </li>
                             <li><a href="user-lock-screen.html">Lock Screen</a>
-                            </li>                                        
+                            </li>
 
                         </ul>
                     </div>
@@ -276,13 +276,13 @@
         <li><a href="css-helpers.html"><i class="mdi-communication-live-help"></i> Helpers</a>
         </li>
         <li><a href="changelogs.html"><i class="mdi-action-swap-vert-circle"></i> Changelogs</a>
-        </li>                    
+        </li>
         <li class="li-hover"><div class="divider"></div></li>
         <li class="li-hover"><p class="ultra-small margin more-text">Daily Sales</p></li>
         <li class="li-hover">
             <div class="row">
                 <div class="col s12 m12 l12">
-                    <div class="sample-chart-wrapper">                            
+                    <div class="sample-chart-wrapper">
                         <div class="ct-chart ct-golden-section" id="ct2-chart"></div>
                     </div>
                 </div>

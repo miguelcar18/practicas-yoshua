@@ -11,14 +11,14 @@
 </footer>
 <!-- END FOOTER -->
 
-<div id="js-var" style="visibility:none;" 
+<div id="js-var" style="visibility:none;"
      data-toastr-position="{{config('config.notification_position')}}"
      data-something-error-message="{{trans('messages.something_error_message')}}"
      data-character-remaining="{{trans('messages.character_remaining')}}"
      data-textarea-limit="{{config('config.textarea_limit')}}"
-     data-calendar-language="{!! $calendar_language !!}" 
-     data-datepicker-language="{!! $datepicker_language !!}" 
-     data-datatable-language="/assets/vendor/datatables/locale/{!! config('lang.'.$default_language.'.datatable') !!}.json" 
+     data-calendar-language="{!! $calendar_language !!}"
+     data-datepicker-language="{!! $datepicker_language !!}"
+     data-datatable-language="/assets/vendor/datatables/locale/{!! config('lang.'.$default_language.'.datatable') !!}.json"
      ></div>
 
 <!-- ================================================
@@ -30,6 +30,7 @@ Scripts
 
 <!--materialize js-->
 <script type="text/javascript" src="{{asset('materialize/js/materialize.js')}}"></script>
+
 <!--prism-->
 <script type="text/javascript" src="{{asset('materialize/js/plugins/prism/prism.js')}}"></script>
 <!--scrollbar-->
@@ -47,7 +48,7 @@ Scripts
 <script type="text/javascript" src="{{asset('materialize/js/plugins/data-tables/data-tables-script.js')}}"></script>
 
 
-
+{{--{!! Html::script('assets/vendor/bootstrap/js/bootstrap.min.js') !!}--}}
 {!! Html::script('assets/vendor/toastr/toastr.min.js') !!}
 @include('common.toastr_notification')
 {!! Html::script('assets/vendor/password/password.js') !!}
@@ -61,13 +62,21 @@ Scripts
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endif
 
+{!! Html::script('assets/vendor/summernote/summernote.min.js') !!}
+
+{!! Html::script('assets/js/bootbox.js') !!}
 
 
 {!! Html::script('assets/js/wmlab.js') !!}
 {!! Html::script('assets/js/app.js') !!}
+<script>
+$.ajaxSetup({
+    headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
+});
 
+</script>
 
-
+yield('scripts')
 
 </body>
 

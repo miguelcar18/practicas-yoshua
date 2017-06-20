@@ -14,9 +14,15 @@ function delete_form($value,$param = array()){
         $form_option['data-submit'] = $param['ajax'];
 
     $form = Form::open($form_option);
-    $form .= Html::decode(Form::button('<i class="fa fa-trash-o"></i> '.$label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'), 'class' => 'btn btn-danger btn-xs', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
+    $form .= Html::decode(Form::button($label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'),  'style'=>' outline: none;background: transparent;border: none;font-size:20px; width:3px;heigth:3px',  'class' => 'mdi-action-delete', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
+
+
+   // $form .= Html::decode(Form::button('<i class="fa fa-trash-o"></i> '.$label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'), 'class' => 'btn btn-danger btn-xs', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
     return $form .= Form::close();
 }
+
+
+
 
 function getMode(){
     return env('MODE');
@@ -39,7 +45,7 @@ function backupDatabase(){
         $db_export->dump($filename);
         return ['status' => 'success','filename' => $filename];
     } catch(\App\Classes\Shuttle_Exception $e) {
-        $message = $e->getMessage(); 
+        $message = $e->getMessage();
         return ['status' => 'error'];
     }
 }
@@ -93,7 +99,7 @@ function ipRange($network, $ip) {
     if ($d === FALSE) {
         $ip_arr = explode('/', $network);
         if (!preg_match("@\d*\.\d*\.\d*\.\d*@", $ip_arr[0], $matches)){
-            $ip_arr[0].=".0"; 
+            $ip_arr[0].=".0";
         }
         $network_long = ip2long($ip_arr[0]);
         $x = ip2long($ip_arr[1]);
@@ -130,8 +136,8 @@ function envu($data = array()){
 }
 
 function checkDBConnection(){
-    $link = @mysqli_connect(config('database.connections.primary.host'), 
-        config('database.connections.primary.username'), 
+    $link = @mysqli_connect(config('database.connections.primary.host'),
+        config('database.connections.primary.username'),
         config('database.connections.primary.password'));
 
     if($link)
@@ -177,7 +183,7 @@ function setConfig($config_vars){
         config([
             'services.mandrill.secret' => ($config_vars->where('name','mandrill_secret')->first()) ? $config_vars->where('name','mandrill_secret')->first()->value : ''
         ]);
-    }           
+    }
 }
 
 function createSlug($string){
@@ -204,19 +210,19 @@ function toWord($word){
 }
 
 function getCustomFields($form, $custom_field_values = array()){
-    
+
     $custom_fields = \App\CustomField::whereForm($form)->get();
 
     foreach($custom_fields as $custom_field){
-      
+
       $c_values = (array_key_exists($custom_field->name, $custom_field_values)) ? $custom_field_values[$custom_field->name] : '';
       $options = explode(',',$custom_field->options);
 
       $required = '';
-      
+
       echo '<div class="form-group">';
       echo '<label for="'.$custom_field->name.'">'.$custom_field->title.'</label>';
-      
+
       if($custom_field->type == 'select'){
         echo '<select class="form-control input-xlarge select2me" placeholder="'.trans('messages.select_one').'" id="'.$custom_field->name.'" name="'.$custom_field->name.'"'.$required.'>
         <option value="">'.trans('messages.select_one').'</option>';
@@ -393,7 +399,7 @@ function getAvatar($id, $size = 60){
     $profile = $user->Profile;
     $name = $user->full_name;
     $tooltip = $name;
-   
+
     //if(isset($profile->avatar)){
     if($profile->avatar!=null){
          return '<img src="/'.config('constant.upload_path.avatar').$profile->avatar.'" class="circle responsive-img valign profile-image" style="width:'.$size.'px";" alt="User avatar" data-toggle="tooltip" title="'.$tooltip.'">';
@@ -499,7 +505,7 @@ function verifyPurchase($purchase_code = ''){
 
 function is_connected()
 {
-    $connected = @fsockopen("www.google.com", 80); 
+    $connected = @fsockopen("www.google.com", 80);
     if ($connected){
         $is_conn = true;
         fclose($connected);
@@ -571,22 +577,22 @@ function validateIp(){
             $allowedIps[] = $wl_ip->start;
     }
 
-    foreach ($allowedIps as $allowedIp) 
+    foreach ($allowedIps as $allowedIp)
     {
-        if (strpos($allowedIp, '*')) 
+        if (strpos($allowedIp, '*'))
         {
-            $range = [ 
+            $range = [
                 str_replace('*', '0', $allowedIp),
                 str_replace('*', '255', $allowedIp)
             ];
             if(ipExistsInRange($range, $ip)) return true;
-        } 
+        }
         else if(strpos($allowedIp, '-'))
         {
             $range = explode('-', str_replace(' ', '', $allowedIp));
             if(ipExistsInRange($range, $ip)) return true;
         }
-        else 
+        else
         {
             if (ip2long($allowedIp) === ip2long($ip)) return true;
         }
@@ -597,7 +603,7 @@ function validateIp(){
 function isSecure(){
     if(!getMode())
         return 1;
-    
+
     $url = \Request::url();
     $result = strpos($url, 'wmlab');
     if($result === FALSE)
@@ -608,7 +614,7 @@ function isSecure(){
 
 function ipExistsInRange(array $range, $ip)
 {
-    if (ip2long($ip) >= ip2long($range[0]) && ip2long($ip) <= ip2long($range[1])) 
+    if (ip2long($ip) >= ip2long($range[0]) && ip2long($ip) <= ip2long($range[1]))
         return true;
     return false;
 }

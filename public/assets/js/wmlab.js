@@ -17,18 +17,18 @@ $(document).ready(function(){
             var field = '<input type="hidden" name="'+$(this).attr('name')+'" value="0" />';
             $(formDetails).append(field);
         });
-        
+
         $(formDetails).find('.checkbox-input').each(function() {
           if(!$(this).is(':checked') && $(this).attr('data-off-value') == 0)
             var field = '<input type="hidden" name="'+$(this).attr('name')+'" value="0" />';
             $(formDetails).append(field);
         });
-   
+
         if (formDetails.attr('data-submit') != 'noAjax'){
-          event.preventDefault();  
+          event.preventDefault();
           ajaxProcess(formDetails);
         }
-      });   
+      });
     }
 
     function ajaxProcess(formDetails){
@@ -65,7 +65,7 @@ $(document).ready(function(){
           var errors = JSON.parse(response.responseText);
           var errorsHtml = '';
           $.each( errors, function( key, value ) {
-              errorsHtml += value[0] + '<br />'; 
+              errorsHtml += value[0] + '<br />';
           });
           toastr.error(errorsHtml,'',{"positionClass": toastr_position});
         } else
@@ -74,7 +74,7 @@ $(document).ready(function(){
         complete: function(response){
           formDetails.find(':submit').prop('disabled',false);
         }
-      });  
+      });
     }
 
     function clearForm(ele) {
@@ -111,7 +111,7 @@ $(document).ready(function(){
         $.get(link.attr("data-href"), function(data) {
             $('#myModal').find(".modal-content").html(data);
             $('#myModal').modal('show');
-            loadModalPlugin(); 
+            loadModalPlugin();
         },'html');
     });
     function loadModalPlugin(){
@@ -191,23 +191,26 @@ $(document).ready(function(){
         oTable[table_id].ajax.reload();
       });
     }
-
-    var dt_dom = "<'row'<'col-sm-5 margin-left-10'li><'col-sm-5 pull-right margin-right-10'f>>" +
+    /*var dt_dom = "<'row'<'col-sm-5 margin-left-10'li><'col-sm-5 pull-right margin-right-10'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-4 margin-left-10'B><'col-sm-6 pull-right margin-right-10'p>>";
-    
+*/
+        var dt_dom = "<'row'>" +
+        "<'row'>" +
+        "<'row'>";
+
     var oTable = [];
     if($('.datatable').length > 0)
     $('.datatable').each(function(key,value){
       var table_id = $(this).attr('id');
       oTable[table_id] = $('#'+table_id).DataTable({
           dom: dt_dom,
-          buttons: getDtBtn(table_id),
+         // buttons: getDtBtn(table_id),
         "ajax": {
           "url": "/"+$('#'+table_id).attr('data-table-source')+"/lists",
           "type": "post",
-          "data": function(d){ 
-            return datatablePostData(table_id); 
+          "data": function(d){
+            return datatablePostData(table_id);
           },
         },
         "language": {
@@ -224,7 +227,7 @@ $(document).ready(function(){
       $('#'+table_id).on('xhr.dt', function (e,setting,response) {
         if(response.foot){
           var foot = $('#'+table_id).find('tfoot');
-          if (!foot.length) foot = $('<tfoot>').appendTo('#'+table_id); 
+          if (!foot.length) foot = $('<tfoot>').appendTo('#'+table_id);
           foot.html(response.foot);
         }
       });
@@ -240,7 +243,7 @@ $(document).ready(function(){
     $('.summernote').summernote({ height: 100 });
     if($('.fileinput').length)
     $('.fileinput').filestyle();
-    
+
     if($('#form-wizard').length)
       $('#form-wizard').bootstrapWizard();
 
@@ -248,13 +251,13 @@ $(document).ready(function(){
       $(field).iCheck({
       checkboxClass: 'icheckbox_flat-blue',
       radioClass: 'iradio_flat-blue',
-      increaseArea: '20%' 
-      }); 
+      increaseArea: '20%'
+      });
     }
 
     $('form').on('keyup keypress', function(e) {
       var keyCode = e.keyCode || e.which;
-      if (keyCode === 13 && $(this).attr('data-disable-enter-submission')) { 
+      if (keyCode === 13 && $(this).attr('data-disable-enter-submission')) {
         e.preventDefault();
         return false;
       }
@@ -263,7 +266,8 @@ $(document).ready(function(){
     $(document).on("click", "[data-submit-confirm-text]", function(e) {
         e.preventDefault();
         var $el = $(this);
-        bootbox.confirm("Are you sure?", function(result) {
+
+         result=confirm("Are you sure?");
           if (result) {
             var formDetails = $el.closest('form');
             if (formDetails.attr('data-submit') != 'noAjax')
@@ -271,7 +275,17 @@ $(document).ready(function(){
             else
             $(formDetails).submit();
           }
-        });
+
+       /* bootbox.confirm("Are you sure?", function(result) {
+          if (result) {
+            var formDetails = $el.closest('form');
+            if (formDetails.attr('data-submit') != 'noAjax')
+              ajaxProcess(formDetails);
+            else
+            $(formDetails).submit();
+          }
+        });*/
+
     });
 
     function textareaCounter(){
@@ -292,7 +306,7 @@ $(document).ready(function(){
     function resizeTextarea(){
         $.each($('textarea[data-autoresize]'), function() {
             var offset = this.offsetHeight - this.clientHeight;
-         
+
             var resizeTextarea = function(el) {
                 $(el).css('height', 'auto').css('height', el.scrollHeight + offset);
             };
@@ -338,7 +352,7 @@ $(document).ready(function(){
         locale: calendar_language,
         events: calendar_events,
         eventRender: function(event, element) {
-              $(element).tooltip({title: event.title});             
+              $(element).tooltip({title: event.title});
           }
       });
     }
@@ -362,7 +376,7 @@ $(document).ready(function(){
       selector: "[data-toggle=tooltip]",
       container: "body"
     })
-    
+
     $(document.body).on('click','a',function(event){
         if($(this).attr('data-ajax')){
           event.preventDefault();
@@ -434,7 +448,7 @@ $(document).ready(function(){
         }, $('#chat-messages').attr('data-chat-refresh-duration')*1000);
       }
     }
-    
+
     function refreshContent(field){
       if(field == 'chat-messages')
         fetchChatMessages();

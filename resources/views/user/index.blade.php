@@ -11,21 +11,25 @@
 @stop
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading"><strong>{{trans('messages.list_all')}}</strong> {{trans('messages.user')}}
-                @if(Entrust::can('create-user'))
-                <div class="additional-btn">
-                    <a href="/user/create" class="btn btn-sm btn-primary">{{trans('messages.add_new')}}</a>
-                </div>
-                @endif
-            </div>
-            <div class="panel-body full">
-                @include('common.datatable',['table' => $table_data['user-table']])
-            </div>
-        </div>
-    </div>
-</div>
-@stop
 
+
+
+
+
+{{--<div class="panel-heading"><strong>{{trans('messages.list_all')}}</strong> {{trans('messages.user')}}
+@if(Entrust::can('create-user'))
+<div class="additional-btn">
+    <a href="/user/create" class="btn btn-sm btn-primary">{{trans('messages.add_new')}}</a>
+</div>
+@endif
+</div>--}}
+
+@include('common.materialize.datatable',['table' => $table_data['user-table']])
+
+
+
+
+@stop
+@section('scripts')
+
+@stop
