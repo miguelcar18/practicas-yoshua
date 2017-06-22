@@ -12,17 +12,7 @@
 
 @section('content')
 
-
-
-
-
-{{--<div class="panel-heading"><strong>{{trans('messages.list_all')}}</strong> {{trans('messages.user')}}
-@if(Entrust::can('create-user'))
-<div class="additional-btn">
-    <a href="/user/create" class="btn btn-sm btn-primary">{{trans('messages.add_new')}}</a>
-</div>
-@endif
-</div>--}}
+@include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'user/create','buttonMessage'=>trans('messages.add_new'),'message'=>''])
 
 @include('common.materialize.datatable',['table' => $table_data['user-table']])
 

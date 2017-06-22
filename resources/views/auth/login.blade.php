@@ -39,7 +39,7 @@
     <div class="row">
         <div class="input-field col s12">
 
-            <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.login') !!}</button>
+            <button type="submit" class="btn waves-effect waves-ligth blue col s12">{!! trans('messages.login') !!}</button>
         </div>
     </div>
 

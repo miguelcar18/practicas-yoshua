@@ -18,11 +18,11 @@
                         <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
+                        <li><a href="lock"><i class="mdi-action-lock-outline"></i> Lock</a>
                         </li>
 
                         <li><a href="#" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();"><i class="mdi-hardware-keyboard-tab"></i> {!! trans('messages.logout') !!}</a>
+                            document.getElementById('logout-form').submit();"><i class="mdi-hardware-keyboard-tab"></i> {!! trans('messages.logout') !!}</a>
                         </li>
 
 
@@ -54,10 +54,24 @@
             </ul>
         </li>
 
-
-
-
         <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-settings"></i>Configuración</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li><a href="configuration">Settings</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+
+
+
+   {{-- <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Layouts</a>
                     <div class="collapsible-body">
@@ -71,7 +85,8 @@
                 </li>
             </ul>
         </li>
-        <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
+
+       <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
         </li>
         <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i> Calender</a>
         </li>
@@ -287,7 +302,7 @@
                     </div>
                 </div>
             </div>
-        </li>
+        </li>--}}
     </ul>
     <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
 </aside>

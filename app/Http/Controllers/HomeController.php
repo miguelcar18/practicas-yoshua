@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -93,7 +93,12 @@ class HomeController extends Controller
         return view('maintenance');
     }
 
-    public function lock(){
+    public function lock(Request $request){
+
+         if ($request!=null) {
+            session(['locked' => 1]);
+        }
+
         if(session('locked'))
             return view('auth.lock');
         else

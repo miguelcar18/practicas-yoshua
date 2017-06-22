@@ -57,7 +57,7 @@ Scripts
 {!! Html::script('assets/js/textAvatar.js') !!}
 {!! Html::script('assets/vendor/switch/bootstrap-switch.min.js') !!}
 
-
+<?php //dd($assets) ?>
 @if(in_array('recaptcha',$assets))
 <script src='https://www.google.com/recaptcha/api.js'></script>
 @endif
