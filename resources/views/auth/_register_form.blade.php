@@ -60,14 +60,7 @@
 
 
 
-            <div class="input-field col s6">
-                <button class="btn cyan waves-effect waves-light right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                    <i class="mdi-content-send right"></i>
-                </button>
-            </div>
-        </div>
-
-</div>
+          
 <!--
 {{ getCustomFields('user-registration-form') }}
 @if(Auth::check())
