@@ -47,7 +47,7 @@
     <div class="row">
         <div class="input-field col s12">
 
-            <button type="submit" class="btn waves-effect waves-light col s12">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
+            <button type="submit" class="btn waves-effect waves-light light-blue darken-4 col s12">{!! trans('messages.reset').' '.trans('messages.password') !!}</button>
         </div>
     </div>
 

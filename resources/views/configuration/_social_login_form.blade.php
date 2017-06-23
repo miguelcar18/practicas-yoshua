@@ -59,8 +59,8 @@
                 </div>
            <div class="row">
             <div class="input-field col s12">
-                <button class="btn cyan waves-effect waves-light right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                    <i class="mdi-content-send right"></i>
+                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+                    
                 </button>
             </div>
         </div>

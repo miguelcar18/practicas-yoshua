@@ -13,12 +13,12 @@
 @include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/user','buttonMessage'=>trans('messages.list_all'),'message'=>''])
 <div class="row">
 
-    <div class="col s5 m5 l5">
-        <div class="card-panel col s12 m12 l12">
+    <div class="col s5 ">
+        <div class="card-panel col s12">
             <h4 class="header2"><strong>{!!trans('messages.user').'</strong> '.trans('messages.profile')!!}</h4>
             <div class="row">
-                <form class="col s12 m12 l12">
-                    <div class="row">
+                <form >
+                    <div class="row col s12">
                         <div class="input-field col s12 center">
                             <div style="margin-top:20px;margin-bottom:20px;">{!! getAvatar($user->id,150) !!}</div>
                         </div>
@@ -60,25 +60,38 @@
                                 </tr>
                             </tbody>
                         </table>
+
+
                         <div class="row">
-                            <div class="input-field col s12">
+                            <div class="input-field col s6">
+                            @if($user->id== Auth::user()->id)
+                                <a href="#modal1" class=" btn modal-trigger  waves-effect waves-light light-blue darken-4 left">{{trans('messages.change').' '.trans('messages.password')}}</a>
+                            @endif
+                            </div>
+
+
+
+                            <div class="input-field col s6">
                                 <a href="#" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" class="btn red waves-effect waves-light right">{{trans('messages.logout')}}</a>
-
                             </div>
 
                         </div>
                         <p></p>
                     </div>
                 </form>
+
+
+
             </div>
         </div>
     </div>
 
 
 
+
     <!--tab-->
-    <div class="col s7 m7 l7 left">
+    <div class="col s7  left">
         <div class="card-panel">
             <div class="row">
                 <div class="col s12">
@@ -141,8 +154,7 @@
                 </div>
             </div>
 
-
-
-
         </div>
+
+        @include('auth.change_password')
         @stop

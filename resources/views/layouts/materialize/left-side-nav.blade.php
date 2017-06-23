@@ -9,7 +9,7 @@
                 </div>
                 <div class="col col s8 m8 l8">
                     <ul id="profile-dropdown" class="dropdown-content">
-                        <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
+                        <li><a href="user/{!! Auth::user()->id !!}"><i class="mdi-action-face-unlock"></i> Profile</a>
                         </li>
                         @if(Entrust::can('manage-configuration'))
                         <li><a href="configuration"><i class="mdi-action-settings"></i> Settings</a>

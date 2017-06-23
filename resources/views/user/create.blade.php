@@ -18,7 +18,14 @@
 {!! Form::open(['route' => 'user.store','role' => 'form', 'class' => 'user-form','id' => "user-form"]) !!}
 @include('auth._register_form')
 
+  <div class="input-field col s6">
+                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+                   
+                </button>
+            </div>
+        </div>
 
+</div>
 
 {!! Form::close() !!}
 
