@@ -1,8 +1,8 @@
 <div class="input-field col s6">
     @if(!$user->hasRole(DEFAULT_ROLE))
     <div class="input-field col s12">
-        <p>{!! Form::select('role_id[]',$roles,$user_roles,['class'=>'','style' => 'width:100%;','multiple' => 'multiple'])!!}
-            {!! Form::label('role',trans('messages.role'),[])!!}</p>
+        <p> {!! Form::label('role',trans('messages.role'),[])!!}
+    {!! Form::select('role_id[]',$roles,$user_roles,['class'=>'select2me multiple','style' => 'width:100%;','multiple' => 'multiple'])!!}</p>
     </div>
     @endif
     <div class="col s12">

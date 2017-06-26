@@ -31,20 +31,21 @@
 
         <link href="{{asset('materialize/css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/css/style.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
-        <!-- Custome CSS-->    
+        <!-- Custome CSS-->
         <link href="{{asset('materialize/css/custom/custom.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/css/layouts/page-center.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
 
         <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
         <link href="{{asset('materialize/js/plugins/prism/prism.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+        {!! Html::style('assets/vendor/toastr/toastr.min.css') !!}
 
     </head>
 
     <body class="cyan">
         <!-- Start Page Loading -->
         <div id="loader-wrapper">
-            <div id="loader"></div>        
+            <div id="loader"></div>
             <div class="loader-section section-left"></div>
             <div class="loader-section section-right"></div>
         </div>
@@ -59,7 +60,7 @@
             </div>
         </div>
 
- 
+
 
         <!-- ================================================
           Scripts

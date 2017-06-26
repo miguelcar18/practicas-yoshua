@@ -142,7 +142,7 @@
                 </div>
             </div>
 
-            <div class="row">
+           {{-- <div class="row">
 
                 <div class="col-md-6">
                     <div class="input-field col s6">
@@ -152,7 +152,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div>--}}
 
 
             <div class="row">
@@ -175,12 +175,12 @@
 
                         </div>
                     </div>
-                        
+
 
 
                     <div id="enable_chat_refresh_field">
                         <div class="input-field col s3">
-                            
+
 
                             {!! Form::input('text','chat_refresh_duration',(config('config.chat_refresh_duration')) ? : '',[])!!}
                             {!! Form::label('chat_refresh_duration',trans('messages.chat').' Refresh Duration (In Second)',[])!!}
@@ -195,7 +195,7 @@
                         <input name="maintenance_mode" type="checkbox" class="checkbox-input enable-show-hide filled-in " id="maintenance_mode" value="1" {{ (config('config.maintenance_mode') == 1) ? 'checked' : '' }} data-off-value="0">
                         {!! Form::label('maintenance_mode',trans('messages.maintenance').' '.trans('messages.mode'),[])!!}
                         </p>
-                    </div>				  
+                    </div>
                     <div id="maintenance_mode_field">
                         <div class="input-field col s6">
 
@@ -206,16 +206,16 @@
                     </div>
                 </div>
                 </div>
-            
-        </div>
-        <div class="clear"></div>
+            <div class="clear"></div>
         <div class="row">
             <div class="input-field col s12">
                 <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                    
+
                 </button>
             </div>
         </div>
+        </div>
+
         {!! Form::close() !!}
     </div>
 </div>

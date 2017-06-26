@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-field col s6">
-                        {!! Form::input('text','company_name',(config('config.company_name')) ? : '')!!}
+                        {!! Form::input('text','company_name',(config('config.company_name')) ? : '',[])!!}
                         {!! Form::label('company_name',trans('messages.company').' '.trans('messages.name'),[])!!}
                     </div>
                     <div class="input-field col s6">
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                        
+
                     </button>
                 </div>
             </div>

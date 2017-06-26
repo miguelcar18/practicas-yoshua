@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col s12 m12 l12">
         <div class="card-panel">
-            <h4 class="header2">{{trans('messages.authentication')}}</h4>                   
+            <h4 class="header2">{{trans('messages.authentication')}}</h4>
             {!! Form::open(['route' => 'configuration.store','role' => 'form', 'class'=>'config-auth-form','id' => 'config-auth-form','data-no-form-clear' => 1]) !!}
 
             <div class="row">
@@ -17,26 +17,21 @@
                     </div>
                     <div class="input-field col s6">
 
-                        <p>
+
                             <input name="enable_two_factor_auth" type="checkbox" class="checkbox-input enable-show-hide filled-in " id="enable_two_factor_auth" value="1" {{ (config('config.enable_two_factor_auth') == 1) ? 'checked' : '' }} data-off-value="0">
                             {!! Form::label('enable_two_factor_auth',trans('messages.message').' Two Factor Auth',[])!!}
-                        </p>
-                    </div>
-                    <div id="enable_two_factor_auth_field">
-                        <div class="input-field col s6">
 
-
-                            <div class="input-field col s3">
+                           <div id="enable_two_factor_auth_field">
+                            <div class="input-field col s4">
                                 {!! Form::select('two_factor_auth_type', [
                                 '1'=>'Email',
                                 '0'=>'SMS'
                                 ],(config('config.two_factor_auth_type')) ? : '',[])!!}
                                 {!! Form::label('two_factor_auth_type','Two Factor Auth Type',[])!!}
                             </div>
-
-
                         </div>
                     </div>
+
                     <div class="input-field col s6">
 
                         <p>
@@ -54,14 +49,13 @@
                     </div>
 
                     <div class="input-field col s6">
-                        
+
                         <p>
                             <input name="enable_throttle" type="checkbox" class="checkbox-input enable-show-hide filled-in " id="enable_throttle" value="1" {{ (config('config.enable_throttle') == 1) ? 'checked' : '' }} data-off-value="0">
                             {!! Form::label('enable_throttle',trans('messages.enable').' Throttle',[])!!}
                         </p>
 
-                    </div>
-                    <div id="enable_throttle_field">
+                         <div id="enable_throttle_field">
                         <div class="input-field col s3">
                             {!! Form::input('text','throttle_attempt',(config('config.throttle_attempt')) ? : '',[])!!}
                             {!! Form::label('throttle_attempt','Throttle Attempt',[])!!}
@@ -71,15 +65,20 @@
                             {!! Form::label('throttle_lockout_period','Throttle Lockout Period (In Min)',[])!!}
                         </div>
                     </div>
+
+
+                    </div>
+
                 </div>
                 <div class="col-md-4">
-                    <div class="input-field col s6">
+                    <div class="input-field col s3">
 
+                        {!! Form::select('login', [
+                        '1' => trans('messages.email'),
+                        '0' => trans('messages.username'),
+                        ],(config('config.login')) ? : 'ltr',[])!!}
+                        {!! Form::label('login',trans('messages.login').' '.trans('messages.with'),[])!!}
 
-                        <p>
-                            <input name="login" type="checkbox" class="checkbox-input enable-show-hide filled-in " id="login" value="1" {{ (config('config.login') == 1) ? 'checked' : '' }} data-off-value="0">
-                            {!! Form::label('login',trans('messages.login').' '.trans('messages.with'),[])!!}
-                        </p>
                     </div>
                     <div class="input-field col s6">
 
@@ -87,7 +86,7 @@
                             <input name="enable_user_registration" type="checkbox" class="checkbox-input  filled-in " id="enable_user_registration" value="1" {{ (config('config.enable_user_registration') == 1) ? 'checked' : '' }} data-off-value="0">
                             {!! Form::label('enable_user_registration',trans('messages.enable').' '.trans('messages.user').' '.trans('messages.registration'),[])!!}
 
-                        </p> 
+                        </p>
 
                     </div>
                     <div class="input-field col s6">
@@ -171,7 +170,7 @@
             <div class="row">
                 <div class="input-field col s12">
                     <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                        
+
                     </button>
                 </div>
             </div>

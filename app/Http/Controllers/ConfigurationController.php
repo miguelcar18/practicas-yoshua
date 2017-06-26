@@ -17,7 +17,7 @@ class ConfigurationController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     /**
@@ -37,7 +37,7 @@ class ConfigurationController extends Controller
     public function store(Request $request){
         if(!getMode()){
             if($request->has('ajax_submit')){
-                $response = ['message' => trans('messages.disable_message'), 'status' => 'error']; 
+                $response = ['message' => trans('messages.disable_message'), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withErrors(trans('messages.disable_message'));
@@ -54,7 +54,7 @@ class ConfigurationController extends Controller
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
 
@@ -75,16 +75,16 @@ class ConfigurationController extends Controller
         $this->logActivity(['module' => 'configuration','activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
+            $response = ['message' => trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));  
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.configuration').' '.trans('messages.updated'));
     }
 
     public function mail(Request $request){
         if(!getMode()){
             if($request->has('ajax_submit')){
-                $response = ['message' => trans('messages.disable_message'), 'status' => 'error']; 
+                $response = ['message' => trans('messages.disable_message'), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withErrors(trans('messages.disable_message'));
@@ -109,7 +109,7 @@ class ConfigurationController extends Controller
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withInput()->withErrors($validation->messages());
@@ -126,18 +126,18 @@ class ConfigurationController extends Controller
                     $stmp =  1;
                 } catch (Swift_TransportException $e) {
                     $stmp =  $e->getMessage();
-                } 
+                }
 
             if($stmp != 1){
                 if($request->has('ajax_submit')){
-                    $response = ['message' => $stmp, 'status' => 'error']; 
+                    $response = ['message' => $stmp, 'status' => 'error'];
                     return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
                 }
                 return redirect()->back()->withInput()->withErrors($stmp);
             }
         }
         $input = $request->all();
-        
+
         foreach($input as $key => $value){
             if(!in_array($key, config('constant.ignore_var'))){
                 $config = \App\Config::firstOrNew(['name' => $key]);
@@ -149,16 +149,16 @@ class ConfigurationController extends Controller
         $this->logActivity(['module' => 'mail_configuration','activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
+            $response = ['message' => trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'));         
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.mail').' '.trans('messages.configuration').' '.trans('messages.updated'));
     }
 
     public function sms(Request $request){
         if(!getMode()){
             if($request->has('ajax_submit')){
-                $response = ['message' => trans('messages.disable_message'), 'status' => 'error']; 
+                $response = ['message' => trans('messages.disable_message'), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withErrors(trans('messages.disable_message'));
@@ -172,7 +172,7 @@ class ConfigurationController extends Controller
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withInput()->withErrors($validation->messages());
@@ -190,16 +190,16 @@ class ConfigurationController extends Controller
         $this->logActivity(['module' => 'sms_configuration','activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('sms').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
+            $response = ['message' => trans('sms').' '.trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.sms').' '.trans('messages.configuration').' '.trans('messages.updated'));         
+        return redirect('/configuration#'.$request->config_type)->withSuccess(trans('messages.sms').' '.trans('messages.configuration').' '.trans('messages.updated'));
     }
 
     public function logo(Request $request){
         if(!getMode()){
             if($request->has('ajax_submit')){
-                $response = ['message' => trans('messages.disable_message'), 'status' => 'error']; 
+                $response = ['message' => trans('messages.disable_message'), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withErrors(trans('messages.disable_message'));
@@ -211,7 +211,7 @@ class ConfigurationController extends Controller
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
 
@@ -243,7 +243,7 @@ class ConfigurationController extends Controller
         $this->logActivity(['module' => 'logo','activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success']; 
+            $response = ['message' => trans('messages.configuration').' '.trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
 

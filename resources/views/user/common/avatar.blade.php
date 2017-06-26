@@ -19,7 +19,7 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>File</span>
-                        <input type="file" name="avatar" id="avatar" title="{!! trans('messages.select').' '.trans('messages.avatar') !!}" class="fileinput" data-buttonText="{!! trans('messages.select').' '.trans('messages.avatar') !!}">
+                        <input type="file" name="avatar" id="avatar" title="{!! trans('messages.select').' '.trans('messages.avatar') !!}"  data-buttonText="{!! trans('messages.select').' '.trans('messages.avatar') !!}">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
@@ -30,12 +30,12 @@
             <div class="row">
                 <div class="input-field col s12">
                     <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                        
+
                     </button>
                 </div>
             </div>
 
-            
+
             {!! Form::close() !!}
         </div>
     </div>

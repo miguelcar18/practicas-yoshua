@@ -36,11 +36,12 @@ Class RoleController extends Controller{
 
         foreach($roles as $role){
             $rows[] = array(
-                '<div class="btn-group btn-group-xs">'.
-                '<a href="#" data-href="/role/'.$role->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a>'.
+                '<div class="row"><div class="col s6">'.
+               // '<a href="#" data-href="/role/'.$role->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a>'.
+                '<a href="/role/' . $role->id . '/edit" class="col s1 " style="font-size:20px" data-toggle="modal"  > <i class="mdi-editor-mode-edit" data-toggle="tooltip" title="' . trans('messages.edit') . '"></i></a>' .
                 delete_form(['role.destroy',$role->id]).
-                '</div>',
-                ucfirst($role->name).(($role->default_user_role) ? (' <span class="label label-danger">'.trans('messages.default_user_role').'</span>') : ''),
+                '</div></div>',
+                ucfirst($role->name).(($role->default_user_role) ? (' <span class="card red card-content white-text">'.trans('messages.default_user_role').'</span>') : ''),
                 $role->description
                 );
         }

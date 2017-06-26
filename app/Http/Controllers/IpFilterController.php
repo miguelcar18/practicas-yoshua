@@ -35,10 +35,11 @@ Class IpFilterController extends Controller{
 
         foreach($ip_filters as $ip_filter){
             $rows[] = array(
-                '<div class="btn-group btn-group-xs">'.
-                '<a href="#" data-href="/ip-filter/'.$ip_filter->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a>'.
+                '<div class="row"><div class="col s6">'.
+                //'<a href="#" data-href="/ip-filter/'.$ip_filter->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a>'.
+                '<a href="/ip-filter/' . $ip_filter->id . '/edit" class="col s1 " style="font-size:20px" data-toggle="modal"  > <i class="mdi-editor-mode-edit" data-toggle="tooltip" title="' . trans('messages.edit') . '"></i></a>' .
                 delete_form(['ip-filter.destroy',$ip_filter->id]).
-                '</div>',
+                '</div></div>',
                 $ip_filter->start,
                 $ip_filter->end
                 );
@@ -61,7 +62,7 @@ Class IpFilterController extends Controller{
 	public function validateIp($start_ip,$end_ip,$ip_filter = null){
 
 		if($end_ip && $start_ip > $end_ip){
-			$response = ['message' => trans('messages.invalid_ip_range'), 'status' => 'error']; 
+			$response = ['message' => trans('messages.invalid_ip_range'), 'status' => 'error'];
 			return $response;
 		}
 
@@ -91,13 +92,13 @@ Class IpFilterController extends Controller{
 		}
 
 		if($start_ip_same)
-			$response = ['message' => trans('messages.start_ip_same'), 'status' => 'error']; 
+			$response = ['message' => trans('messages.start_ip_same'), 'status' => 'error'];
 		elseif($start_ip_in_range)
-			$response = ['message' => trans('messages.start_ip_in_range'), 'status' => 'error']; 
+			$response = ['message' => trans('messages.start_ip_in_range'), 'status' => 'error'];
 		elseif($end_ip_in_range)
-			$response = ['message' => trans('messages.end_ip_in_range'), 'status' => 'error']; 
+			$response = ['message' => trans('messages.end_ip_in_range'), 'status' => 'error'];
 		elseif($other_ip_in_range)
-			$response = ['message' => trans('messages.other_ip_in_range'), 'status' => 'error']; 
+			$response = ['message' => trans('messages.other_ip_in_range'), 'status' => 'error'];
 		else
 			$response = ['status' => 'success'];
 
@@ -123,7 +124,7 @@ Class IpFilterController extends Controller{
 		$this->logActivity(['module' => 'ip_filter','unique_id' => $ip_filter->id,'activity' => 'activity_added']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.added'), 'status' => 'success']; 
+            $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.added'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
 		return redirect('/ip-filter')->withSuccess('IP'.' '.trans('messages.filter').' '.trans('messages.added'));
@@ -148,7 +149,7 @@ Class IpFilterController extends Controller{
 		$this->logActivity(['module' => 'ip_filter','unique_id' => $ip_filter->id,'activity' => 'activity_updated']);
 
         if($request->has('ajax_submit')){
-	        $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.updated'), 'status' => 'success']; 
+	        $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.updated'), 'status' => 'success'];
 	        return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	    }
 
@@ -161,7 +162,7 @@ Class IpFilterController extends Controller{
         $ip_filter->delete();
 
         if($request->has('ajax_submit')){
-	        $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.deleted'), 'status' => 'success']; 
+	        $response = ['message' => 'IP'.' '.trans('messages.filter').' '.trans('messages.deleted'), 'status' => 'success'];
 	        return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	    }
 

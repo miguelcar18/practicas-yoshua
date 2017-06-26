@@ -3,7 +3,7 @@ function delete_form($value,$param = array()){
     $name = (array_key_exists('name', $param)) ? $param['name'] : randomString(10);
     $form_option = ['method' => 'DELETE',
         'route' => $value,
-        'class' => 'form-inline',
+        'class' => 'form-inline col s1',
         'id' => $name.'_'.$value[1]
         ];
 

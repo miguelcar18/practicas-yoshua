@@ -63,7 +63,7 @@
 
 
                         <div class="row">
-                            <div class="input-field col s6">
+                            <div class="input-field col s8">
                             @if($user->id== Auth::user()->id)
                                 <a href="#modal1" class=" btn modal-trigger  waves-effect waves-light light-blue darken-4 left">{{trans('messages.change').' '.trans('messages.password')}}</a>
                             @endif
@@ -71,7 +71,7 @@
 
 
 
-                            <div class="input-field col s6">
+                            <div class="input-field col 4">
                                 <a href="#" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" class="btn red waves-effect waves-light right">{{trans('messages.logout')}}</a>
                             </div>

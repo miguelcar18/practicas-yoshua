@@ -30,53 +30,8 @@ class HomeController extends Controller
 
     public function index()
     {
-/*
-        $all_birthdays = \App\Profile::whereBetween( DB::raw('dayofyear(date_of_birth) - dayofyear(curdate())'), [0,config('config.celebration_days')])
-            ->orWhereBetween( DB::raw('dayofyear(curdate()) - dayofyear(date_of_birth)'), [0,config('config.celebration_days')])
-            ->orderBy('date_of_birth','asc')
-            ->get();
-
-        $celebrations = array();
-        foreach($all_birthdays as $all_birthday){
-            $number = date('Y') - date('Y',strtotime($all_birthday->date_of_birth));
-            $celebrations[strtotime(date('d M',strtotime($all_birthday->date_of_birth)))] = array(
-                'icon' => 'birthday-cake',
-                'title' => getDateDiff($all_birthday->date_of_birth) ? : date('d M',strtotime($all_birthday->date_of_birth)),
-                'date' => $all_birthday->date_of_birth,
-                'number' => $number.'<sup>'.daySuffix($number).'</sup>'.' '.trans('messages.birthday'),
-                'id' => $all_birthday->User->id,
-                'name' => $all_birthday->User->full_name
-            );
-        }
-
-        ksort($celebrations);
-
-        $birthdays = \App\Profile::whereNotNull('date_of_birth')->orderBy('date_of_birth','asc')->get();
-
-        $todos = \App\Todo::where('user_id','=',Auth::user()->id)
-            ->orWhere(function ($query)  {
-                $query->where('user_id','!=',Auth::user()->id)
-                    ->where('visibility','=','public');
-            })->get();
-
-        $events = array();
-        foreach($birthdays as $birthday){
-            $start = date('Y').'-'.date('m-d',strtotime($birthday->date_of_birth));
-            $title = trans('messages.birthday').' : '.$birthday->User->full_name;
-            $color = '#133edb';
-            $events[] = array('title' => $title, 'start' => $start, 'color' => $color);
-        }
-        foreach($todos as $todo){
-            $start = $todo->date;
-            $title = trans('messages.to_do').' : '.$todo->title.' '.$todo->description;
-            $color = '#ff0000';
-            $url = '/todo/'.$todo->id.'/edit';
-            $events[] = array('title' => $title, 'start' => $start, 'color' => $color, 'url' => $url);
-        }
-        $assets = ['calendar'];
-        //return view('home',compact('assets','events','birthdays','celebrations'));
-        */
         return view('home');
+        
     }
 
     public function tnc(){

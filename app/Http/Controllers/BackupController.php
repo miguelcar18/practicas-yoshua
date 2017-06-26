@@ -37,8 +37,9 @@ Class BackupController extends Controller{
         foreach($backups as $backup){
 
 			$rows[] = array(
-				'<div class="btn-group btn-group-xs">'.
-				'<a href="/backup/'.$backup->id.'" class="btn btn-xs btn-default" > <i class="fa fa-download" data-toggle="tooltip" title="'.trans('messages.download').'"></i></a>'.
+				'<div class="row"><div class="col s6">'.
+				//'<a href="/backup/'.$backup->id.'" class="btn btn-xs btn-default" > <i class="fa fa-download" data-toggle="tooltip" title="'.trans('messages.download').'"></i></a>'.
+				'<a href="/backup/' . $backup->id . '" class="col s1 " style="font-size:20px" data-toggle="modal"  > <i class="mdi-file-cloud-download" data-toggle="tooltip" title="' . trans('messages.donwload') . '"></i></a>' .
 				delete_form(['backup.destroy',$backup->id]).
 				'</div>',
 				$backup->file,
@@ -69,7 +70,7 @@ Class BackupController extends Controller{
         $backup = \App\Backup::create(['file' => $filename]);
 
 		$this->logActivity(['module' => 'backup','unique_id' => $backup->id,'activity' => 'activity_generated']);
-        $response = ['message' => trans('messages.backup').' '.trans('messages.generated'), 'status' => 'success']; 
+        $response = ['message' => trans('messages.backup').' '.trans('messages.generated'), 'status' => 'success'];
         return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	}
 
@@ -93,9 +94,9 @@ Class BackupController extends Controller{
 		if(File::exists(config('constant.upload_path.backup').$backup->file))
 			File::delete(config('constant.upload_path.backup').$backup->file);
         $backup->delete();
-        
+
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.backup').' '.trans('messages.deleted'), 'status' => 'success']; 
+            $response = ['message' => trans('messages.backup').' '.trans('messages.deleted'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
 

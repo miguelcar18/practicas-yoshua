@@ -22,7 +22,7 @@
                         </li>
 
                         <li><a href="#" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><i class="mdi-hardware-keyboard-tab"></i> {!! trans('messages.logout') !!}</a>
+                                document.getElementById('logout-form').submit();"><i class="mdi-hardware-keyboard-tab"></i> {!! trans('messages.logout') !!}</a>
                         </li>
 
 
@@ -45,10 +45,14 @@
                 <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Archivos</a>
                     <div class="collapsible-body">
                         <ul>
+                            @if(Entrust::can('manage-user'))
                             <li><a href="user">Users</a>
                             </li>
+                            @endif
+
 
                         </ul>
+
                     </div>
                 </li>
             </ul>
@@ -59,19 +63,49 @@
                 <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-settings"></i>Configuración</a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="configuration">Settings</a>
+                            @if(Entrust::can('manage-configuration'))
+                            <li><a href="{{URL::to('configuration')}}">Settings</a>
                             </li>
+                            @endif
+
+                            @if(Entrust::can('manage-permission'))
+                            <li><a href="{{URL::to('permission')}}"></i> {{trans('messages.permission') }}</a></li>
+                            @endif
+
+                            @if(Entrust::can('manage-role'))
+                            <li><a href="{{URL::to('role')}}"></i> {{trans('messages.user').' '.trans('messages.role') }}</a></li>
+                            @endif
+
+                            @if(Entrust::can('manage-ip-filter') && config('config.enable_ip_filter'))
+                            <li><a href="{{URL::to('ip-filter')}}">IP {{trans('messages.filter') }}</a></li>
+                            @endif
+                            @if(Entrust::can('manage-template') && config('config.enable_email_template'))
+                            <li><a href="{{URL::to('template')}}">{{trans('messages.email').' '.trans('messages.template') }}</a></li>
+                            @endif
+                            @if(config('config.enable_activity_log'))
+                            <li><a href="{{URL::to('activity-log')}}">{{trans('messages.activity').' '.trans('messages.log') }}</a></li>
+                            @endif
+
+                            
+                            @if(Entrust::can('manage-backup') && config('config.enable_backup'))
+                            <li><a href="{{URL::to('backup')}}">{{trans('messages.backup')}}</a></li>
+                            @endif
 
                         </ul>
                     </div>
+
+
                 </li>
             </ul>
+        </li>
+        <li><a href="#" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="mdi-hardware-keyboard-tab"></i> {!! trans('messages.logout') !!}</a>
         </li>
 
 
 
 
-   {{-- <li class="no-padding">
+        {{-- <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Layouts</a>
                     <div class="collapsible-body">

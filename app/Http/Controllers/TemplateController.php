@@ -60,10 +60,11 @@ Class TemplateController extends Controller{
         foreach($templates as $template){
 
 			$rows[] = array(
-				'<div class="btn-group btn-group-xs">'.
-				'<a href="#" data-href="/template/'.$template->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a> '.
+				'<div class="row"><div class="col s6">'.
+				'<a href="/template/' . $template->id . '/edit" class="col s1 " style="font-size:20px" data-toggle="modal"  > <i class="mdi-editor-mode-edit" data-toggle="tooltip" title="' . trans('messages.edit') . '"></i></a>' .
+				//'<a href="#" data-href="/template/'.$template->id.'/edit" class="btn btn-xs btn-default" data-toggle="modal" data-target="#myModal"> <i class="fa fa-edit" data-toggle="tooltip" title="'.trans('messages.edit').'"></i></a> '.
 				(!$template->is_default ? delete_form(['template.destroy',$template->id]) : '').
-				'</div>',
+				'</div></div>',
 				$template->name,
 				toWord($template->category),
 				$template->subject
@@ -74,7 +75,7 @@ Class TemplateController extends Controller{
 	}
 
 	public function create(){
-		
+
 	}
 
 	public function edit(Template $template){
@@ -90,7 +91,7 @@ Class TemplateController extends Controller{
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withInput()->withErrors($validation->messages());
@@ -101,18 +102,18 @@ Class TemplateController extends Controller{
 		$this->logActivity(['module' => 'template','activity' => 'activity_added']);
 
         if($request->has('ajax_submit')){
-            $response = ['message' => trans('messages.template').' '.trans('messages.added'), 'status' => 'success']; 
+            $response = ['message' => trans('messages.template').' '.trans('messages.added'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
 		return redirect()->back()->withSuccess(trans('messages.template').' '.trans('messages.saved'));
 	}
-	
+
 	public function content(Request $request){
 		$template = Template::find($request->input('template_id'));
 		$user = \App\User::find($request->input('user_id'));
 
 		if(!$template || !$user){
-	        $response = ['status' => 'error']; 
+	        $response = ['status' => 'error'];
 	        return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 		}
 
@@ -126,7 +127,7 @@ Class TemplateController extends Controller{
             $body = str_replace('[CURRENT_DATE]',showDate(date('Y-m-d')),$body);
 		}
 
-        $response = ['body' => $body, 'subject' => $template->subject,'status' => 'success']; 
+        $response = ['body' => $body, 'subject' => $template->subject,'status' => 'success'];
         return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	}
 
@@ -139,7 +140,7 @@ Class TemplateController extends Controller{
 
         if($validation->fails()){
             if($request->has('ajax_submit')){
-                $response = ['message' => $validation->messages()->first(), 'status' => 'error']; 
+                $response = ['message' => $validation->messages()->first(), 'status' => 'error'];
                 return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
             }
             return redirect()->back()->withInput()->withErrors($validation->messages());
@@ -152,7 +153,7 @@ Class TemplateController extends Controller{
 		$this->logActivity(['module' => 'template','activity' => 'activity_updated']);
 
 	    if($request->has('ajax_submit')){
-	        $response = ['message' => trans('messages.template').' '.trans('messages.saved'), 'status' => 'success']; 
+	        $response = ['message' => trans('messages.template').' '.trans('messages.saved'), 'status' => 'success'];
 	        return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	    }
 		return redirect('/template')->withSuccess(trans('messages.template').' '.trans('messages.saved'));
@@ -162,7 +163,7 @@ Class TemplateController extends Controller{
 
 		if($template->is_default){
 	        if($request->has('ajax_submit')){
-	            $response = ['message' => trans('messages.template_cannot_delete'), 'status' => 'error']; 
+	            $response = ['message' => trans('messages.template_cannot_delete'), 'status' => 'error'];
 	            return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	        }
 			return redirect()->back()->withErrors(trans('messages.template_cannot_delete'));
@@ -172,7 +173,7 @@ Class TemplateController extends Controller{
 		$this->logActivity(['module' => 'template','activity' => 'activity_deleted']);
 
 	    if($request->has('ajax_submit')){
-	        $response = ['message' => trans('messages.template').' '.trans('messages.deleted'), 'status' => 'success']; 
+	        $response = ['message' => trans('messages.template').' '.trans('messages.deleted'), 'status' => 'success'];
 	        return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
 	    }
     	return redirect()->back()->withSuccess(trans('messages.template').' '.trans('messages.deleted'));

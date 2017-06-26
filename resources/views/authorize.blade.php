@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.materialize.app')
 
     @section('content')
 
@@ -12,5 +12,5 @@
 				<passport-personal-access-tokens></passport-personal-access-tokens>
             </div>
         </div>
-    </div>  	
+    </div>
 	@stop

@@ -9,15 +9,16 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="input-field col s6">
-                        
-                                                
+
+
                         <p>
-                          <input name="enable_oauth" type="checkbox" class="checkbox-input filled-in " id="enable_oauth" value="1" {{ (config('config.enable_oauth') == 1) ? 'checked' : '' }} data-off-value="0">
-                          {!! Form::label('enable_oauth',trans('messages.enable').' oAuth',[])!!}
+                            <input name="enable_oauth" type="checkbox" class="checkbox-input filled-in " id="enable_oauth" value="1" {{ (config('config.enable_oauth') == 1) ? 'checked' : '' }} data-off-value="0">
+                            {!! Form::label('enable_oauth',trans('messages.enable').' oAuth',[])!!}
                         </p>
-                        
-                        
+
+
                     </div>
+
                     <div class="input-field col s6">
                         
                         <p>
@@ -30,15 +31,15 @@
                     @foreach(config('constant.social_login_provider') as $provider)
                     <div class="col-md-4">
                         <div class="input-field col s6">
-                           
-                             <p>
+
+                            <p>
                                 <input name="enable_{{$provider}}_login" type="checkbox" class="checkbox-input enable-show-hide filled-in " id="enable_{{$provider}}_login" value="1" {{ (config('config.enable_'.$provider.'_login') == 1) ? 'checked' : '' }} data-off-value="0">
                                 {!! Form::label('enable_'.$provider.'_login',trans('messages.enable').' '.toWord($provider).' Login',[])!!}
 
                             </p>
-                            
-                            
-                            
+
+
+
                         </div>
                         <div id="enable_{{$provider}}_login_field">
                             <div class="input-field col s6">
@@ -57,19 +58,19 @@
                     </div>
                     @endforeach
                 </div>
-           <div class="row">
-            <div class="input-field col s12">
-                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-                    
-                </button>
-            </div>
-        </div>
-            </div>
-           
-            </div>
-            {!! Form::close() !!}
-        </div>
 
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+
+                    </button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
     </div>
+
+</div>
 
 </div>
