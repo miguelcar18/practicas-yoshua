@@ -1,15 +1,9 @@
-05-06-2017
+Instalación
 
-AG-Larafy
-
-Es la renovacion del proyecto Admin-Generico
-
-https://codecanyon.net/item/larafy-laravel-53-boilerplate/18053632?_ga=2.202488721.1817651150.1496673324-1459062880.1495550644
-
-http://preview.codecanyon.net/item/larafy-laravel-53-boilerplate/full_screen_preview/18053632?_ga=2.96599071.1817651150.1496673324-1459062880.1495550644
-
-El codigo original estara ubicao en la rama original
-En la rama master estara ubicada la adaptacion con el template
-http://preview.codecanyon.net/item/larafy-laravel-53-boilerplate/full_screen_preview/18053632?_ga=2.96599071.1817651150.1496673324-1459062880.1495550644
-
-Si detecta alguna falla en la adaptacion de la rama master por favor indicarlo para que sea solventado
+1.- Crear una base de datos en mysql
+2.- Importar la base de datos que se encuentra en la carpeta database de nombre larafy
+3.-Extraer el archivo env.tar.gz en la carpeta raiz
+4.- Editar el archivo de sitios disponibles para apache y cambiar la directiva DocumentRoot a la manera siguiente DocumentRoot /var/www/html/admgen-larafy/public
+5.- Reiniciar Apache
+6.- Ingregar a traves del navegador a localhost o la direccion destinada para el servicio
+7. ingresar las credenciales correo:secretadmin@gmail.com y password secretadmin
