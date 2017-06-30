@@ -5,25 +5,16 @@
 <h5 class="breadcrumbs-title">{{trans('messages.configuration')}}</h5>
 <ol class="breadcrumbs">
     <li><a href="home">Home</a></li>
-     <li class="active">{{trans('messages.configuration')}}</li>
+    <li class="active">{{trans('messages.configuration')}}</li>
 </ol>
 @stop
-<!--@section('breadcrumb')  //barra navegacional
-<div class="row">
-    <ul class="breadcrumb">
-                    <li><a href="/home">{!! trans('messages.home') !!}</a></li>
-                    <li class="active">{!! trans('messages.configuration') !!}</li>
-                </ul>
-</div>
-        
-@stop
--->	
+
 @section('content')
 
 
 <div id="basic-tabs" class="section">
 
-    <div class="col s12 m8 l9">
+    <div class="col s12">
 
         <div class="row">
             <div class="col s12">
@@ -70,11 +61,11 @@
 
                 <div id="authentication" class="col s12">
                     @include('configuration._auth_form')
-                    
+
                 </div>
                 <div id="social" class="col s12">
                     @include('configuration._social_login_form')
-                    
+
                 </div>
 
 

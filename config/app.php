@@ -185,7 +185,9 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class
+        Laravel\Tinker\TinkerServiceProvider::class,
+        //Way\Generators\GeneratorsServiceProvider::class,
+        //Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
     ],
 
     /*

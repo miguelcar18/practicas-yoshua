@@ -64,9 +64,9 @@
 
                         <div class="row">
                             <div class="input-field col s8">
-                            @if($user->id== Auth::user()->id)
+                                @if($user->id== Auth::user()->id)
                                 <a href="#modal1" class=" btn modal-trigger  waves-effect waves-light light-blue darken-4 left">{{trans('messages.change').' '.trans('messages.password')}}</a>
-                            @endif
+                                @endif
                             </div>
 
 

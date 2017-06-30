@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('#data-table-simple').DataTable();
-    
-    
+
+
     var table = $('#data-table-row-grouping').DataTable({
         "columnDefs": [
             { "visible": false, "targets": 2 }
@@ -12,19 +12,19 @@ $(document).ready(function(){
             var api = this.api();
             var rows = api.rows( {page:'current'} ).nodes();
             var last=null;
- 
+
             api.column(2, {page:'current'} ).data().each( function ( group, i ) {
                 if ( last !== group ) {
                     $(rows).eq( i ).before(
                         '<tr class="group"><td colspan="5">'+group+'</td></tr>'
                     );
- 
+
                     last = group;
                 }
             } );
         }
     });
- 
+
     // Order by the grouping
     $('#data-table-row-grouping tbody').on( 'click', 'tr.group', function () {
         var currentOrder = table.order()[0];

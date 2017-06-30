@@ -56,7 +56,7 @@
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
 
-               @yield('content')
+                @yield('content')
             </div>
         </div>
 
@@ -83,7 +83,9 @@
 
         {!! Html::script('assets/vendor/toastr/toastr.min.js') !!}
         @include('common.toastr_notification')
-
+        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
 
 
 
