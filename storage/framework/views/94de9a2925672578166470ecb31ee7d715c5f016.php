@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="input-field col s12 center">
-            <!--<img src="./demo/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">-->
+
 
             <?php if(config('config.logo') && File::exists(config('constant.upload_path.logo').config('config.logo'))): ?>
             <div class="logo text-center">
@@ -21,22 +21,21 @@
         <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
            <!-- <input id="username" type="text">-->
-           <input type="email" name="email" id="email">
-           <label for="email" class="center-align"><?php echo trans('messages.email'); ?></label>
+            <input type="email" name="email" id="email">
+            <label for="email" class="center-align"><?php echo trans('messages.email'); ?></label>
         </div>
     </div>
-        
+
     <div class="row">
         <div class="input-field col s12">
-            <!--<a href="index.html" class="btn waves-effect waves-light col s12">Login</a>-->
-            <button type="submit" class="btn waves-effect waves-light col s12"><?php echo trans('messages.reset').' '.trans('messages.password'); ?></button>
+            <button type="submit" class="btn waves-effect waves-light light-blue darken-4 col s12"><?php echo trans('messages.reset').' '.trans('messages.password'); ?></button>
 
         </div>
     </div>
 
 
 
-    </div>
+</div>
 
 </form>
 

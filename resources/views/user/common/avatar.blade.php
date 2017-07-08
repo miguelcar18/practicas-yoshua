@@ -19,7 +19,7 @@
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>File</span>
-                        <input type="file" name="avatar" id="avatar" title="{!! trans('messages.select').' '.trans('messages.avatar') !!}"  data-buttonText="{!! trans('messages.select').' '.trans('messages.avatar') !!}">
+                        <input type="file" name="avatar" id="avatar" title="{!! trans('messages.select').' '.trans('messages.avatar') !!}" >
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">

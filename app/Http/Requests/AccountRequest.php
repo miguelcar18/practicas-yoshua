@@ -27,7 +27,7 @@ class AccountRequest extends FormRequest
             'mysql_username' => 'required',
             'mysql_password' => 'required',
             'mysql_database' => 'required',
-            'email' => 'required|email',
+            //'email' => 'required|email',
             'first_name' => 'required',
             'last_name' => 'required',
             'username' => 'required',

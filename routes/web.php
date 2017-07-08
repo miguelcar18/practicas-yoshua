@@ -30,10 +30,10 @@ Route::group(['middleware' => 'guest'], function () {
 
 Auth::routes();
 
-/*Route::group(['middleware' => ['auth','web','account']],function(){
+Route::group(['middleware' => ['auth','web','account']],function(){
 	Route::get('/verify-security','UserController@verifySecurity');
 	Route::post('/verify-security',array('as' => 'user.verify-security','uses' => 'UserController@postVerifySecurity'));
-});*/
+});
 
 Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_screen','maintenance_mode']], function () {
 

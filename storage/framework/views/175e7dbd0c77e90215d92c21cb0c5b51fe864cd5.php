@@ -1,114 +1,139 @@
-			<div class="col-sm-6">
-			  <div class="form-group">
-			    <?php echo Form::label('driver','Driver',[]); ?>
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel">
+            <h4 class="header2"><?php echo e(trans('messages.mail')); ?> <?php echo e(trans('messages.configuration')); ?></h4>
+            <?php echo Form::open(['route' => 'configuration.mail','role' => 'form', 'class'=>'config-mail-form','id' => 'config-mail-form','data-no-form-clear' => 1]); ?>
 
-				<?php echo Form::select('driver', [
-					null=>'Please Select',
-					'mail' => 'mail',
-					'sendmail' => 'sendmail',
-					'smtp' => 'smtp',
-					'mailgun' => 'mailgun',
-					'mandrill' => 'mandrill',
-					'log' => 'log'
-					],(config('mail.driver')) ? : '',['id' => 'mail_driver', 'class'=>'form-control input-xlarge select2me','placeholder'=>trans('messages.select_one'),'style' => 'width:100%;']); ?>
 
-			  </div>
-			  <div class="form-group">
-			    <?php echo Form::label('from_address','From Address',[]); ?>
+            <div class="row">			
+                <div class="col-sm-6">
+                    <div class="input-field col s6">
+                        <?php echo Form::select('driver', [
+                        null=>'Please Select',
+                        'mail' => 'mail',
+                        'sendmail' => 'sendmail',
+                        'smtp' => 'smtp',
+                        'mailgun' => 'mailgun',
+                        'mandrill' => 'mandrill',
+                        'log' => 'log'
+                        ],(config('mail.driver')) ? : '',['id' => 'mail_driver']); ?>
 
-				<?php echo Form::input('email','from_address',config('mail.from.address') ? : '',['class'=>'form-control','placeholder'=>'From Address']); ?>
+                        <?php echo Form::label('driver','Driver',[]); ?>
 
-			  </div>
-			  <div class="form-group">
-			    <?php echo Form::label('from_name','From Name',[]); ?>
+                    </div>
+                    <div class="input-field col s6">
+                        <?php echo Form::input('email','from_address',config('mail.from.address') ? : '',[]); ?>
 
-				<?php echo Form::input('text','from_name',config('mail.from.name') ? : '',['class'=>'form-control','placeholder'=>'From Name']); ?>
+                        <?php echo Form::label('from_address','From Address',[]); ?>
 
-			  </div>
-			  <?php echo Form::hidden('config_type','mail'); ?>
+                    </div>
+                    <div class="input-field col s6">
+                        <?php echo Form::input('text','from_name',config('mail.from.name') ? : '',[]); ?>
 
-			<?php echo Form::submit(isset($buttonText) ? $buttonText : trans('messages.save'),['class' => 'btn btn-primary']); ?>
+                        <?php echo Form::label('from_name','From Name',[]); ?>
 
-			</div>
-			<div class="col-sm-6">
-				<div id="smtp_configuration" class="mail_config">
-				  <div class="form-group">
-				    <?php echo Form::label('host','SMTP Host',[]); ?>
+                    </div>
+                    <?php echo Form::hidden('config_type','mail'); ?>
 
-					<?php echo Form::input('text','host',(config('mail.host')) ? : '',['class'=>'form-control','placeholder'=>'SMTP Host']); ?>
+                </div>
+                <div class="col-sm-6">
+                    <div id="smtp_configuration" class="mail_config">
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','host',(config('mail.host')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('port','SMTP Port',[]); ?>
+                            <?php echo Form::label('host','SMTP Host',[]); ?>
 
-					<?php echo Form::input('text','port',(config('mail.port')) ? : '',['class'=>'form-control','placeholder'=>'SMTP Port']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','port',(config('mail.port')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('username','SMTP Username',[]); ?>
+                            <?php echo Form::label('port','SMTP Port',[]); ?>
 
-					<?php echo Form::input('text','username',(config('mail.username')) ? : '',['class'=>'form-control','placeholder'=>'SMTP Username']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','username',(config('mail.username')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('password','SMTP Password',[]); ?>
+                            <?php echo Form::label('username','SMTP Username',[]); ?>
 
-					<?php echo Form::input('password','password',(config('mail.password')) ? config('config.hidden_value') : '',['class'=>'form-control','placeholder'=>'SMTP Password']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('password','password',(config('mail.password')) ? config('config.hidden_value') : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('encryption','Encryption',[]); ?>
+                            <?php echo Form::label('password','SMTP Password',[]); ?>
 
-					<?php echo Form::select('encryption', ['ssl'=>'SSL',
-					'tls' => 'TLS'],(config('config.encryption')) ? : 'tls',['class'=>'form-control select2me','placeholder'=>trans('messages.select_one'),'style' => 'width:100%;']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::select('encryption', ['ssl'=>'SSL',
+                            'tls' => 'TLS'],(config('config.encryption')) ? : 'tls',[]); ?>
 
-				  </div>
-				</div>
-				<div id="mandrill_configuration" class="mail_config">
-				  <div class="form-group">
-				    <?php echo Form::label('mandrill_secret','Secret Key',[]); ?>
+                            <?php echo Form::label('encryption','Encryption',[]); ?>
 
-					<?php echo Form::input('text','mandrill_secret',(config('services.mandrill.secret')) ? : '',['class'=>'form-control','placeholder'=>'Secret Key']); ?>
+                        </div>
+                    </div>
+                    <div id="mandrill_configuration" class="mail_config">
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mandrill_secret',(config('services.mandrill.secret')) ? : '',[]); ?>
 
-				  </div>
-				</div>
-				<div id="mailgun_configuration" class="mail_config">
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_domain','Domain',[]); ?>
+                            <?php echo Form::label('mandrill_secret','Secret Key',[]); ?>
 
-					<?php echo Form::input('text','mailgun_domain',(config('services.mailgun.domain')) ? : '',['class'=>'form-control','placeholder'=>'Domain']); ?>
+                        </div>
+                    </div>
+                    <div id="mailgun_configuration" class="mail_config">
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mailgun_domain',(config('services.mailgun.domain')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_secret','Secret Key',[]); ?>
+                            <?php echo Form::label('mailgun_domain','Domain',[]); ?>
 
-					<?php echo Form::input('text','mailgun_secret',(config('services.mailgun.secret')) ? : '',['class'=>'form-control','placeholder'=>'Secret Key']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mailgun_secret',(config('services.mailgun.secret')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_host','SMTP Host',[]); ?>
+                            <?php echo Form::label('mailgun_secret','Secret Key',[]); ?>
 
-					<?php echo Form::input('text','mailgun_host',(config('mail.host')) ? : '',['class'=>'form-control','placeholder'=>'SMTP Host']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mailgun_host',(config('mail.host')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_port','SMTP Port',[]); ?>
+                            <?php echo Form::label('mailgun_host','SMTP Host',[]); ?>
 
-					<?php echo Form::input('text','mailgun_port',(config('mail.port')) ? : '',['class'=>'form-control','placeholder'=>'SMTP Port']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mailgun_port',(config('mail.port')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_username','STMP Username',[]); ?>
+                            <?php echo Form::label('mailgun_port','SMTP Port',[]); ?>
 
-					<?php echo Form::input('text','mailgun_username',(config('mail.username')) ? : '',['class'=>'form-control','placeholder'=>'STMP Username']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::input('text','mailgun_username',(config('mail.username')) ? : '',[]); ?>
 
-				  </div>
-				  <div class="form-group">
-				    <?php echo Form::label('mailgun_password','STMP Password',[]); ?>
+                            <?php echo Form::label('mailgun_username','STMP Username',[]); ?>
 
-					<?php echo Form::input('text','mailgun_password',(config('mail.password')) ? : '',['class'=>'form-control','placeholder'=>'STMP Password']); ?>
+                        </div>
+                        <div class="input-field col s6">
+                            <?php echo Form::label('mailgun_password','STMP Password',[]); ?>
 
-				  </div>
-				</div>
-			</div>
-			<div class="clear"></div>
+                            <?php echo Form::input('password','mailgun_password',(config('mail.password')) ? : '',[]); ?>
+
+
+
+
+
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
+
+                                    
+                                </button>
+                            </div>
+                        </div>
+                </div>
+                <div class="clear"></div>
+                <?php echo Form::close(); ?>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,75 +1,93 @@
 
 
-	<?php $__env->startSection('breadcrumb'); ?>
-        <div class="row">
-			<ul class="breadcrumb">
-			    <li><a href="/home"><?php echo trans('messages.home'); ?></a></li>
-			    <li class="active"><?php echo trans('messages.language'); ?></li>
-			</ul>
-		</div>
-	<?php $__env->stopSection(); ?>
-	
-	<?php $__env->startSection('content'); ?>
-		<div class="row">
-			<div class="col-sm-4">
-				<div class="panel panel-default">
-                    <div class="panel-heading">
-					<strong><?php echo trans('messages.add_new'); ?></strong> <?php echo trans('messages.word'); ?>
+<?php $__env->startSection('breadcrumbs'); ?>
+<h5 class="breadcrumbs-title"><?php echo trans('messages.language'); ?></h5>
+<ul class="breadcrumbs">
+    <li><a href="/home"><?php echo trans('messages.home'); ?></a></li>
+    <li class="active"><?php echo trans('messages.language'); ?></a></li>
+</ul>
+<?php $__env->stopSection(); ?>
 
-					</div>
-					<div class="panel-body">
-						<?php echo Form::open(['route' => 'language.add-words','role' => 'form', 'class'=>'language-entry-form','id' => 'language-entry-form']); ?>
 
-								  
-				  		  <div class="form-group">
-						    <?php echo Form::label('text',trans('messages.key'),[]); ?>
+<?php $__env->startSection('content'); ?>
+<div class="row">
+    <div class="row col s4">
+        <div class="card-panel col s12">
+            <h4 class="header2"><strong><?php echo trans('messages.add_new'); ?></strong> <?php echo trans('messages.word'); ?></h4>
 
-							<?php echo Form::input('text','key','',['class'=>'form-control','placeholder'=>trans('messages.key')]); ?>
+            <?php echo Form::open(['route' => 'language.add-words','role' => 'form', 'class'=>'language-entry-form','id' => 'language-entry-form','data-submit' => 'noAjax']); ?>
 
-						  </div>
-				  		  <div class="form-group">
-						    <?php echo Form::label('text',trans('messages.word_or_sentence'),[]); ?>
 
-							<?php echo Form::input('text','text','',['class'=>'form-control','placeholder'=>trans('messages.word_or_sentence')]); ?>
+            <div class="input-field col s12">
+                <?php echo Form::label('text',trans('messages.key'),[]); ?>
 
-						  </div>
-				  		  <div class="form-group">
-						    <?php echo Form::label('module',trans('messages.module'),[]); ?>
+                <?php echo Form::input('text','key','',['class'=>'form-control','placeholder'=>trans('messages.key')]); ?>
 
-							<?php echo Form::input('text','module','',['class'=>'form-control','placeholder'=>trans('messages.module')]); ?>
+            </div>
+            <div class="input-field col s12">
+                <?php echo Form::label('text',trans('messages.word_or_sentence'),[]); ?>
 
-						  </div>
-						<?php echo Form::submit(isset($buttonText) ? $buttonText : trans('messages.save'),['class' => 'btn btn-primary']); ?>
+                <?php echo Form::input('text','text','',['class'=>'form-control','placeholder'=>trans('messages.word_or_sentence')]); ?>
 
-						<?php echo Form::close(); ?>
+            </div>
+            <div class="input-field col s12">
+                <?php echo Form::label('module',trans('messages.module'),[]); ?>
 
-					</div>
-				</div>
-				<div class="panel panel-default">
-                    <div class="panel-heading">
-					<strong><?php echo trans('messages.add_new'); ?></strong> <?php echo trans('messages.language'); ?>
+                <?php echo Form::input('text','module','',['class'=>'form-control','placeholder'=>trans('messages.module')]); ?>
 
-					</div>
-					<div class="panel-body">
-						<?php echo Form::open(['route' => 'language.store','role' => 'form', 'class'=>'language-form','id' => 'language-form']); ?>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
 
-							<?php echo $__env->make('language._form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-						<?php echo Form::close(); ?>
+                    </button>
+                </div>
+            </div>
 
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-8">
-				<div class="panel panel-default">
-                    <div class="panel-heading">
-						<strong><?php echo trans('messages.list_all'); ?></strong> <?php echo trans('messages.language'); ?>
+            <p></p>
+            <?php echo Form::close(); ?>
 
-					</div>
-					<div class="panel-body full">
-						<?php echo $__env->make('common.datatable',['table' => $table_data['language-table']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	<?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        </div>
+
+        <div class="card-panel col s12">
+            <h4 class="header2"><strong><?php echo trans('messages.add_new'); ?></strong> <?php echo trans('messages.language'); ?></h4>
+
+            <?php echo Form::open(['route' => 'language.store','role' => 'form', 'class'=>'language-form','id' => 'language-form' ,'data-submit' => 'noAjax']); ?>
+
+            <?php echo $__env->make('language._form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
+
+                    </button>
+                </div>
+            </div>
+            <p></p>
+            <?php echo Form::close(); ?>
+
+        </div>
+
+
+    </div>    
+    <div class="row col s8">    
+
+        <div class="card-panel col s12">
+
+            <h4 class="header2"><strong><?php echo trans('messages.list_all'); ?></strong> <?php echo trans('messages.language'); ?></h4>
+
+      
+            <div>
+                <?php echo $__env->make('common.materialize.datatable',['table' => $table_data['language-table']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.materialize.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

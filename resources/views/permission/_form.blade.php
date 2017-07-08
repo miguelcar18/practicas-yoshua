@@ -12,6 +12,5 @@
         {!! Form::textarea('description',isset($permission->description) ? $permission->description : '',['size' => '30x3', 'class'=>'materialize-textarea',"data-show-counter" => 1])!!}
         <span class="countdown"></span>
     </div>
-    
-</div>
 
+</div>

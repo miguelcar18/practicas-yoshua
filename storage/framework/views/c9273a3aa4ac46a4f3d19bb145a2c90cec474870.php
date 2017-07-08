@@ -15,7 +15,7 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
         <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
-        <title>Login Page | Materialize - Material Design Admin Template</title>
+        <title><?php echo config('config.application_name') ? : config('constants.default_title'); ?></title>
 
         <!-- Favicons-->
         <link rel="icon" href="<?php echo e(asset('materialize/images/favicon/favicon-32x32.png')); ?>" sizes="32x32">
@@ -55,14 +55,7 @@
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
 
-
-
-
                 <?php echo $__env->yieldContent('content'); ?>
-
-
-
-
             </div>
         </div>
 
@@ -86,18 +79,14 @@
         <!--custom-script.js - Add your own theme custom JS-->
         <script type="text/javascript" src="<?php echo e(asset('materialize/js/custom-script.js')); ?>"></script>
 
-        
-        
-        
-        
-        
-    <?php echo Html::script('assets/vendor/toastr/toastr.min.js'); ?>
 
-    <?php echo $__env->make('common.toastr_notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    
-    
-        
-        
+        <?php echo Html::script('assets/vendor/toastr/toastr.min.js'); ?>
+
+        <?php echo $__env->make('common.toastr_notification', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
+
     </body>
 
 </html>

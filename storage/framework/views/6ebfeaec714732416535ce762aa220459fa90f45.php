@@ -13,17 +13,7 @@
 
     <?php echo Html::style('assets/vendor/metisMenu/metisMenu.min.css'); ?>
 
-    <?php if($direction == 'ltr'): ?>
-        <?php echo Html::style('assets/css/style.min.css'); ?>
-
-    <?php else: ?>
-        <?php echo Html::style('assets/css/style-rtl.min.css'); ?>
-
-        <?php echo Html::style('assets/css/bootstrap-rtl.css'); ?>
-
-        <?php echo Html::style('assets/css/bootstrap-flipped.css'); ?>
-
-    <?php endif; ?>
+    
     <?php echo Html::style('assets/css/bootstrap.vertical-tabs.min.css'); ?>
 
     <?php echo Html::style('assets/vendor/font-awesome/css/font-awesome.min.css'); ?>
@@ -42,10 +32,7 @@
 
     <?php echo Html::style('assets/vendor/summernote/summernote.css'); ?>
 
-    <?php if(in_array('calendar',$assets)): ?>
-        <?php echo Html::style('assets/vendor/calendar/fullcalendar.min.css'); ?>
-
-    <?php endif; ?>
+    
     <?php echo Html::style('assets/vendor/icheck/skins/flat/blue.css'); ?>
 
     <?php echo Html::style('assets/vendor/tags/tags.css'); ?>
@@ -58,5 +45,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    
+    
+    
 </head>

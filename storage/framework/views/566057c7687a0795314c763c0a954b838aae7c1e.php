@@ -3,7 +3,14 @@
     <div class="input-field col s12">
         <p> <?php echo Form::label('role',trans('messages.role'),[]); ?>
 
-    <?php echo Form::select('role_id[]',$roles,$user_roles,['class'=>'select2me multiple','style' => 'width:100%;','multiple' => 'multiple']); ?></p>
+
+            <?php echo Form::select('role_id[]',$roles,$user_roles,['class'=>'select2dynamictag mdb-select','style' => 'width:100%;','multiple' => 'multiple']); ?>
+
+
+
+
+            
+        </p>
     </div>
     <?php endif; ?>
     <div class="col s12">
@@ -80,7 +87,7 @@
         <div class="input-field col s12">
             <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
 
-              
+
             </button>
         </div>
     </div>

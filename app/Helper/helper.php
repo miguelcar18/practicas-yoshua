@@ -15,9 +15,7 @@ function delete_form($value,$param = array()){
 
     $form = Form::open($form_option);
     $form .= Html::decode(Form::button($label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'),  'style'=>' outline: none;background: transparent;border: none;font-size:20px; width:3px;heigth:3px',  'class' => 'mdi-action-delete', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
-
-
-   // $form .= Html::decode(Form::button('<i class="fa fa-trash-o"></i> '.$label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'), 'class' => 'btn btn-danger btn-xs', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
+    //$form .= Html::decode(Form::button('<i class="fa fa-trash-o"></i> '.$label,['data-toggle' => 'tooltip', 'title' => trans('messages.delete'), 'class' => 'btn btn-danger btn-xs', 'data-submit-confirm-text' => 'Yes', 'type' => 'submit']));
     return $form .= Form::close();
 }
 

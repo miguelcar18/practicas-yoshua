@@ -9,10 +9,10 @@
 </ul>
 <?php $__env->stopSection(); ?>
 
+
 <?php $__env->startSection('content'); ?>
 <?php echo $__env->make('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/user','buttonMessage'=>trans('messages.list_all'),'message'=>''], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <div class="row">
-
     <div class="col s5 ">
         <div class="card-panel col s12">
             <h4 class="header2"><strong><?php echo trans('messages.user').'</strong> '.trans('messages.profile'); ?></h4>
@@ -63,15 +63,15 @@
 
 
                         <div class="row">
-                            <div class="input-field col s6">
-                            <?php if($user->id== Auth::user()->id): ?>
+                            <div class="input-field col s8">
+                                <?php if($user->id== Auth::user()->id): ?>
                                 <a href="#modal1" class=" btn modal-trigger  waves-effect waves-light light-blue darken-4 left"><?php echo e(trans('messages.change').' '.trans('messages.password')); ?></a>
-                            <?php endif; ?>
+                                <?php endif; ?>
                             </div>
 
 
 
-                            <div class="input-field col s6">
+                            <div class="input-field col 4">
                                 <a href="#" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();" class="btn red waves-effect waves-light right"><?php echo e(trans('messages.logout')); ?></a>
                             </div>
@@ -156,7 +156,10 @@
             </div>
 
         </div>
+    </div>
 
-        <?php echo $__env->make('auth.change_password', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <?php $__env->stopSection(); ?>
+    <?php echo $__env->make('auth.change_password', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php $__env->stopSection(); ?>
+
+  
 <?php echo $__env->make('layouts.materialize.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

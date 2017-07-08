@@ -1484,4 +1484,9 @@
     'value' => 'Date Time Picker',
     'module' => 'system',
   ),
+  'tt' => 
+  array (
+    'value' => 'tt',
+    'module' => 'tt',
+  ),
 );

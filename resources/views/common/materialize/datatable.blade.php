@@ -1,4 +1,3 @@
-<div class=" select-wrapper initialized col s12">
     <div class="container">
         
         <table  class="datatable responsive-table display "  data-table-source="{{ $table['source'] }}" data-table-title="{{ $table['title'] }}" id="{{ $table['id'] }}" {!! array_key_exists('form',$table) ? 'data-form="'.$table['form'].'"' : '' !!} {!! array_key_exists('disable-sorting',$table) ? 'data-disable-sorting="'.$table['disable-sorting'].'"' : '' !!}>
@@ -20,5 +19,4 @@
             </tfoot>
         </table>
     </div>
-</div>
 

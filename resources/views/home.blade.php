@@ -47,6 +47,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col s12 m6 l3">
+                                <div class="card">
+                                    <div class="card-content  green white-text">
+                                        <p class="card-stats-title"><i class="mdi-social-group-add"></i>{{trans('messages.active').' '.trans('messages.pending').' Approval'}}</p>
+                                        <h4 class="card-stats-number">{{\App\User::whereStatus('pending_approval')->count()}}</h4>
+                                       
+                                    </div>
+                                    <div class="card-action  green darken-2">
+                                        <div id="clients-bar" class="center-align"></div>
+                                    </div>
+                                </div>
+                            </div>
                             
                         </div>
                     </div>

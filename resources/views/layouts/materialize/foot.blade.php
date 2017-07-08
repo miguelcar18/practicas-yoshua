@@ -69,6 +69,7 @@ Scripts
 {{--{!! Html::script('assets/js/bootbox.js') !!}--}}
 
 
+
 {!! Html::script('assets/js/wmlab.js') !!}
 {!! Html::script('assets/js/app.js') !!}
 
@@ -79,9 +80,12 @@ $.ajaxSetup({
 
 </script>
 
+ 
 
 
 yield('scripts')
+
+
 
 </body>
 

@@ -19,7 +19,7 @@
                 <h4 class="header2"><strong>{!!trans('messages.add_new').'</strong> '.trans('messages.filter')!!}</h4>
             </div>
 
-            	{!! Form::open(['route' => 'template.store','role' => 'form', 'class'=>'email-template-form','id' => 'email-template-form','data-form-table' => 'template_table','data-submit' => 'noAjax']) !!}
+            	{!! Form::open(['route' => 'template.store','role' => 'form', 'class'=>'email-template-form','id' => 'email-template-form','data-form-table' => 'template_table']) !!}
 				@include('template._form')
 
             <div class="row">

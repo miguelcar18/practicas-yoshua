@@ -18,9 +18,17 @@
                 <h4 class="header2"><strong><?php echo trans('messages.add_new').'</strong> <strong>'.trans('messages.permission'); ?></strong></h4>
             </div>
 
-            <?php echo Form::open(['route' => 'permission.store','role' => 'form', 'class'=>'permission-form','id' => 'permission-form','data-submit' => 'noAjax']); ?>
+            <?php echo Form::open(['route' => 'permission.store','role' => 'form', 'class'=>'permission-form','id' => 'permission-form']); ?>
 
             <?php echo $__env->make('permission._form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
+
+                    </button>
+                </div>
+
+            </div>
             <?php echo Form::close(); ?>
 
         </div>
@@ -29,11 +37,10 @@
 
     <div class="col s8">
         <div class="card-panel">
-            <strong><?php echo trans('messages.list_all').'</strong> '.trans('messages.permission'); ?>
-
+            <h4 class="header2"> <strong><?php echo trans('messages.list_all').' '.trans('messages.permission'); ?></strong></h4>
 
             <div>
-                <?php echo $__env->make('common.datatable',['table' => $table_data['permission-table']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('common.materialize.datatable',['table' => $table_data['permission-table']], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             </div>
 
             <div class="row">
@@ -46,5 +53,11 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.materialize.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

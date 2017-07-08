@@ -86,13 +86,18 @@
                             <li><a href="{{URL::to('activity-log')}}">{{trans('messages.activity').' '.trans('messages.log') }}</a></li>
                             @endif
 
-                            
                             @if(Entrust::can('manage-backup') && config('config.enable_backup'))
                             <li><a href="{{URL::to('backup')}}">{{trans('messages.backup')}}</a></li>
                             @endif
 
+                            @if(Entrust::can('manage-language') && config('config.multilingual'))
+                            <li><a href="/language"><i class="fa fa-globe fa-fw"></i> {{trans('messages.language') }}</a></li>
+                            @endif
+
                         </ul>
-                    </div>
+
+
+
 
 
                 </li>

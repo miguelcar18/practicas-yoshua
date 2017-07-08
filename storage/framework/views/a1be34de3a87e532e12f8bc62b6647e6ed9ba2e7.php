@@ -11,21 +11,13 @@
 </footer>
 <!-- END FOOTER -->
 
-<div id="js-var" style="visibility:none;"
-     data-toastr-position="<?php echo e(config('config.notification_position')); ?>"
-     data-something-error-message="<?php echo e(trans('messages.something_error_message')); ?>"
-     data-character-remaining="<?php echo e(trans('messages.character_remaining')); ?>"
-     data-textarea-limit="<?php echo e(config('config.textarea_limit')); ?>"
-     data-calendar-language="<?php echo $calendar_language; ?>"
-     data-datepicker-language="<?php echo $datepicker_language; ?>"
-     data-datatable-language="/assets/vendor/datatables/locale/<?php echo config('lang.'.$default_language.'.datatable'); ?>.json"
-     ></div>
+
 
 <!-- ================================================
 Scripts
 ================================================ -->
 
-<!-- jQuery Library -->
+<!-- jQuery Library-->
 <script type="text/javascript" src="<?php echo e(asset('materialize/js/plugins/jquery-1.11.2.min.js')); ?>"></script>
 
 <!--materialize js-->
@@ -41,13 +33,23 @@ Scripts
  -->
 <!-- data-tables -->
 <script type="text/javascript" src="<?php echo e(asset('materialize/js/plugins/data-tables/js/jquery.dataTables.min.js')); ?>"></script>
-<script type="text/javascript" src="<?php echo e(asset('materialize/js/plugins/data-tables/data-tables-script.js')); ?>"></script>
+<!--<script type="text/javascript" src="<?php echo e(asset('materialize/js/plugins/data-tables/data-tables-script.js')); ?>"></script>-->
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 <script type="text/javascript" src="<?php echo e(asset('materialize/js/plugins.js')); ?>"></script>
 <!--custom-script.js - Add your own theme custom JS-->
 <script type="text/javascript" src="<?php echo e(asset('materialize/js/custom-script.js')); ?>"></script>
 
+
+<div id="js-var" style="visibility:none;"
+     data-toastr-position="<?php echo e(config('config.notification_position')); ?>"
+     data-something-error-message="<?php echo e(trans('messages.something_error_message')); ?>"
+     data-character-remaining="<?php echo e(trans('messages.character_remaining')); ?>"
+     data-textarea-limit="<?php echo e(config('config.textarea_limit')); ?>"
+     data-calendar-language="<?php echo $calendar_language; ?>"
+     data-datepicker-language="<?php echo $datepicker_language; ?>"
+     data-datatable-language="/assets/vendor/datatables/locale/<?php echo config('lang.'.$default_language.'.datatable'); ?>.json"
+    ></div>
 
 <?php echo Html::script('assets/vendor/toastr/toastr.min.js'); ?>
 
@@ -62,13 +64,19 @@ Scripts
 
 <?php echo Html::script('assets/vendor/switch/bootstrap-switch.min.js'); ?>
 
+<?php echo Html::script('assets/vendor/fileinput/fileinput.min.js'); ?>
 
-<?php //dd($assets) ?>
+
 <?php if(in_array('recaptcha',$assets)): ?>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <?php endif; ?>
 
-<?php echo Html::script('assets/vendor/summernote/summernote.min.js'); ?>
+
+
+
+
+
+yield('scripts')
 
 
 
@@ -78,6 +86,7 @@ Scripts
 
 <?php echo Html::script('assets/js/app.js'); ?>
 
+
 <script>
 $.ajaxSetup({
     headers: {'X-CSRF-Token': $('meta[name=csrf-token]').attr('content')}
@@ -85,7 +94,11 @@ $.ajaxSetup({
 
 </script>
 
-yield('scripts')
+ 
+
+
+
+
 
 </body>
 

@@ -34,7 +34,7 @@
 
     <div class="col s8">
         <div class="card-panel">
-           <h4 class="header2"> <strong>{!!trans('messages.list_all').' '.trans('messages.permission')!!}</strong></h4>
+            <h4 class="header2"> <strong>{!!trans('messages.list_all').' '.trans('messages.permission')!!}</strong></h4>
 
             <div>
                 @include('common.materialize.datatable',['table' => $table_data['permission-table']])

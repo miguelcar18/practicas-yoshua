@@ -10,6 +10,8 @@
             <?php echo $__env->yieldContent('breadcrumb'); ?>
             
             <?php echo $__env->make('common.message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            
+            <div class="divider"></div>
 
             <?php echo $__env->yieldContent('content'); ?>
         </div>
@@ -22,3 +24,5 @@
         </div>
     </div>
 <?php echo $__env->make('layouts.foot', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+

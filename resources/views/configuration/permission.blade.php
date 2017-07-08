@@ -12,12 +12,9 @@
 <div class="row">
     <div class="col l12">
         <div class="card-panel">
-            {{--<div class="panel-heading">--}}
             <h4 class="header2"><strong>{!!trans('messages.save').'</strong> '.trans('messages.permission')!!}</h4>
-
-            {{--</div>--}}
             {!! Form::open(['route' => 'permission.save-permission','role' => 'form', 'class'=>'permission-form','id' => 'permission-form','data-no-form-clear' => 1]) !!}
-            {{-- <div class="panel-body full">--}}
+
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
@@ -51,7 +48,7 @@
                 </div>
             </div>
 
-            {{-- </div>--}}
+
             {!! Form::close() !!}
         </div>
     </div>
