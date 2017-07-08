@@ -9,10 +9,10 @@
 </ul>
 @stop
 
+
 @section('content')
 @include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/user','buttonMessage'=>trans('messages.list_all'),'message'=>''])
 <div class="row">
-
     <div class="col s5 ">
         <div class="card-panel col s12">
             <h4 class="header2"><strong>{!!trans('messages.user').'</strong> '.trans('messages.profile')!!}</h4>
@@ -155,6 +155,9 @@
             </div>
 
         </div>
+    </div>
 
-        @include('auth.change_password')
-        @stop
+    @include('auth.change_password')
+    @stop
+
+  

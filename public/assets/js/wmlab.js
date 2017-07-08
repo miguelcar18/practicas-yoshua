@@ -89,6 +89,7 @@ $(document).ready(function () {
                 case 'textarea':
                 case 'file':
                     $(this).val('');
+
                     $(ele).find(".select2me").select2({allowClear: true, theme: "bootstrap"});
                     break;
                 case 'checkbox':
@@ -115,7 +116,7 @@ $(document).ready(function () {
     });
     function loadModalPlugin() {
         $('#myModal .switch-input').bootstrapSwitch();
-        $('#myModal .select2me').select2({theme: "bootstrap", allowClear: true});
+        //$('#myModal .select2me').select2({theme: "bootstrap", allowClear: true});
         initIcheck('#myModal .icheck');
         initDatepicker('#myModal .datepicker');
         if ($('#myModal .summernote').length)
@@ -219,7 +220,7 @@ $(document).ready(function () {
                         $('select').val('10');
                         $('select').material_select();
                         return datatablePostData(table_id);
-                         
+
                     },
                 },
                 "language": {
@@ -230,7 +231,7 @@ $(document).ready(function () {
                     {"orderable": false, "targets": 0}
                 ]
             });
-            
+
 
             $('#' + table_id).on('xhr.dt', function (e, setting, response) {
                 if (response.foot) {
@@ -241,12 +242,12 @@ $(document).ready(function () {
                 }
             });
         });
-    
+
 
     ajaxSubmit();
     // $('.switch-input').bootstrapSwitch();
     $('.password-strength').pwstrength();
-    //$('.select2me').select2({theme: "bootstrap", allowClear: true});
+    $('.select2me').select2({theme: "bootstrap", allowClear: true});
     //initDatepicker('.datepicker');
     initIcheck('.icheck');
     //if ($('.summernote').length)
@@ -282,7 +283,8 @@ $(document).ready(function () {
                 $(formDetails).submit();
         }
 
-        /* bootbox.confirm("Are you sure?", function(result) {
+
+        /*bootbox.confirm("Are you sure?", function(result) {
          if (result) {
          var formDetails = $el.closest('form');
          if (formDetails.attr('data-submit') != 'noAjax')
@@ -466,4 +468,26 @@ $(document).ready(function () {
         $("input[name='email']").val($(this).attr('data-email'));
         $("input[name='password']").val($(this).attr('data-password'));
     });
+
+
+
+
+    //Materialize select multiple
+    //asignar clase select_multiple para que ejecute la funcion seleccionar y deseleccionar
+    $('.select_multiple').change(function () {
+        var newValuesArr = [],
+                select = $(this),
+                ul = select.prev();
+        ul.children('li').toArray().forEach(function (li, i) {
+            if ($(li).hasClass('active')) {
+                newValuesArr.push(select.children('option').toArray()[i].value);
+            }
+        });
+        select.val(newValuesArr);
+    });
+
+
+
+
+
 });

@@ -2,7 +2,11 @@
     @if(!$user->hasRole(DEFAULT_ROLE))
     <div class="input-field col s12">
         <p> {!! Form::label('role',trans('messages.role'),[])!!}
-    {!! Form::select('role_id[]',$roles,$user_roles,['class'=>'select2me multiple','style' => 'width:100%;','multiple' => 'multiple'])!!}</p>
+            
+            {!! Form::select('role_id[]',$roles,$user_roles,['class'=>'select_multiple mdb-select','id'=>'select','style' => 'width:100%;','multiple' => 'multiple'])!!}
+
+           
+        </p>
     </div>
     @endif
     <div class="col s12">
@@ -66,7 +70,7 @@
     <div class="row">
         <div class="input-field col s12">
             <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
-              
+
             </button>
         </div>
     </div>
@@ -74,3 +78,4 @@
 </div>
 {!! Form::close() !!}
 </div>
+   
