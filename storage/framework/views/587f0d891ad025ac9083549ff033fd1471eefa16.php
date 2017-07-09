@@ -9,6 +9,7 @@
 </ul>
 <?php $__env->stopSection(); ?>
 
+
 <?php $__env->startSection('content'); ?>
 <?php echo $__env->make('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/user','buttonMessage'=>trans('messages.list_all'),'message'=>''], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <div class="row">
@@ -159,4 +160,6 @@
 
     <?php echo $__env->make('auth.change_password', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     <?php $__env->stopSection(); ?>
+
+  
 <?php echo $__env->make('layouts.materialize.default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

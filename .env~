@@ -1,7 +1,7 @@
 DRIVER=mysql
 PORT=3306
 DB_HOST=localhost
-DB_NAME=admin
+DB_NAME=larafy
 DB_USERNAME=root
 DB_PASSWORD=presbitero
 PURCHASE_CODE=

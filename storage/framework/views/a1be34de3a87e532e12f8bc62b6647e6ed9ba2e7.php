@@ -76,11 +76,6 @@ Scripts
 
 
 
-yield('scripts')
-
-
-
-
 
 <?php echo Html::script('assets/js/wmlab.js'); ?>
 
@@ -97,6 +92,7 @@ $.ajaxSetup({
  
 
 
+yield('scripts')
 
 
 
