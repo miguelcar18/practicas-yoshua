@@ -90,9 +90,9 @@
                             <li><a href="{{URL::to('backup')}}">{{trans('messages.backup')}}</a></li>
                             @endif
 
-                            @if(Entrust::can('manage-language') && config('config.multilingual'))
+                            {{--@if(Entrust::can('manage-language') && config('config.multilingual'))
                             <li><a href="/language"><i class="fa fa-globe fa-fw"></i> {{trans('messages.language') }}</a></li>
-                            @endif
+                            @endif--}}
 
                         </ul>
 
