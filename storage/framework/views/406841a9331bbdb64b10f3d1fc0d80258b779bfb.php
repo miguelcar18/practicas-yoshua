@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('breadcrumbs'); ?>
 
 <h5 class="breadcrumbs-title"><?php echo e(trans('messages.configuration')); ?></h5>

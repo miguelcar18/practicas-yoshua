@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('breadcrumbs'); ?>
 <h5 class="breadcrumbs-title"><?php echo trans('messages.backup'); ?></h5>
 <ol class="breadcrumbs">

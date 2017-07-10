@@ -92,9 +92,7 @@
                             <li><a href="<?php echo e(URL::to('backup')); ?>"><?php echo e(trans('messages.backup')); ?></a></li>
                             <?php endif; ?>
 
-                            <?php if(Entrust::can('manage-language') && config('config.multilingual')): ?>
-                            <li><a href="/language"><i class="fa fa-globe fa-fw"></i> <?php echo e(trans('messages.language')); ?></a></li>
-                            <?php endif; ?>
+                            
 
                         </ul>
 
