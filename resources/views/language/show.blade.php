@@ -1,90 +1,118 @@
-@extends('layouts.default')
+@extends('layouts.materialize.default')
 
-	@section('breadcrumb')
-		<div class="row">
-			<ul class="breadcrumb">
-			    <li><a href="/home">{!! trans('messages.home') !!}</a></li>
-			    <li><a href="/language">{!! trans('messages.language') !!}</a></li>
-			    <li class="active">{!! config('lang.'.$locale.'.language') !!}</li>
-			</ul>
-		</div>
-	@stop
-	
-	@section('content')
-		<div class="row">
-			<div class="col-xs-2">
-			    <ul class="nav nav-tabs tabs-left">
-			      <li class="active"><a href="#plugin" data-toggle="tab">{{trans('messages.plugin')}}</a></li>
-			      @foreach($modules as $module)
-				  	<li><a href="#_{{ $module }}" data-toggle="tab"> {!! trans('messages.'.$module) !!} ({{ $word_count[$module] }})</a></li>
-				  @endforeach
-			    </ul>
-			</div>
-			<div class="col-xs-10">
-			    <div class="tab-content">
-			      	<div class="tab-pane active" id="plugin">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-                    			<strong>{!! trans('messages.plugin') !!}</strong>
-                    		</div>
-                    		<div class="panel-body">
-						    	{!! Form::model($language,['method' => 'PATCH','route' => ['language.plugin',$locale] ,'class' => 'language-plugin-form','id'=>'language-plugin-form','data-no-form-clear' => 1]) !!}
-								  <div class="form-group">
-								    {!! Form::label('datatable',trans('messages.table').' '.trans('messages.language'),[])!!}
-									{!! Form::select('datatable', config('lang_datatable'),isset($locale) ? config('lang.'.$locale.'.datatable') : '',['class'=>'form-control input-xlarge show-tick','title'=>trans('messages.select_one')])!!}
-								  </div>
-								  <div class="form-group">
-								    {!! Form::label('calendar',trans('messages.calendar').' '.trans('messages.language'),[])!!}
-									{!! Form::select('calendar', config('lang_calendar'),isset($locale) ? config('lang.'.$locale.'.calendar') : '',['class'=>'form-control input-xlarge show-tick','title'=>trans('messages.select_one')])!!}
-								  </div>
-								  <div class="form-group">
-								    {!! Form::label('datepicker',trans('messages.datepicker').' '.trans('messages.language'),[])!!}
-									{!! Form::select('datepicker', config('lang_datepicker'),isset($locale) ? config('lang.'.$locale.'.datepicker') : '',['class'=>'form-control input-xlarge show-tick','title'=>trans('messages.select_one')])!!}
-								  </div>
-								  <div class="form-group">
-								    {!! Form::label('datetimepicker',trans('messages.datetimepicker').' '.trans('messages.language'),[])!!}
-									{!! Form::select('datetimepicker', config('lang_datetimepicker'),isset($locale) ? config('lang.'.$locale.'.datetimepicker') : '',['class'=>'form-control input-xlarge show-tick','title'=>trans('messages.select_one')])!!}
-								  </div>
-								  <div class="form-group">
-								    {!! Form::label('validation',trans('messages.validation').' '.trans('messages.language'),[])!!}
-									{!! Form::select('validation', config('lang_validation'),isset($locale) ? config('lang.'.$locale.'.validation') : '',['class'=>'form-control input-xlarge show-tick','title'=>trans('messages.select_one')])!!}
-								  </div>
-								{!! Form::submit(isset($buttonText) ? $buttonText : trans('messages.save'),['class' => 'btn btn-primary pull-right']) !!}
-								{!! Form::close() !!}
-                    		</div>
-                    	</div>
+@section('breadcrumbs')
+<h5 class="breadcrumbs-title">{!! trans('messages.language') !!}</h5>
+<ul class="breadcrumbs">
+    <li><a href="/home">{!! trans('messages.home') !!}</a></li>
+    <li class="active">{!! config('lang.'.$locale.'.language') !!}</li>
+</ul>
+@stop
+
+
+@section('content')
+@include('common.materialize.header-form-link',['icon' => 'mdi-action-language','url'=>'/language','buttonMessage'=>trans('messages.list_all'),'message'=>trans('messages.language')])
+
+<div class="col s12 m8 l9">
+    <div class="row">
+        <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+            <li> <div class="collapsible-header ">{{trans('messages.plugin')}}</div>
+                <div class="collapsible-body">
+
+                    <div class="row col s12" >
+                        {!! Form::model($language,['method' => 'PATCH','route' => ['language.plugin',$locale] ,'class' => 'language-plugin-form','id'=>'language-plugin-form','data-no-form-clear' => 1]) !!}
+                        <div class="row">
+                            <div class="input-field col s6">
+                                {!! Form::select('datatable', config('lang_datatable'),isset($locale) ? config('lang.'.$locale.'.datatable') : '',['title'=>trans('messages.select_one')])!!}
+                                {!! Form::label('datatable',trans('messages.table').' '.trans('messages.language'),[])!!}
+                            </div>
+                            <div class="input-field col s6">
+                                {!! Form::select('calendar', config('lang_calendar'),isset($locale) ? config('lang.'.$locale.'.calendar') : '',['title'=>trans('messages.select_one')])!!}
+                                {!! Form::label('calendar',trans('messages.calendar').' '.trans('messages.language'),[])!!}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                {!! Form::select('datepicker', config('lang_datepicker'),isset($locale) ? config('lang.'.$locale.'.datepicker') : '',['title'=>trans('messages.select_one')])!!}
+                                {!! Form::label('datepicker',trans('messages.datepicker').' '.trans('messages.language'),[])!!}
+                            </div>
+                            <div class="input-field col s6">
+                                {!! Form::select('datetimepicker', config('lang_datetimepicker'),isset($locale) ? config('lang.'.$locale.'.datetimepicker') : '',['title'=>trans('messages.select_one')])!!}
+                                {!! Form::label('datetimepicker',trans('messages.datetimepicker').' '.trans('messages.language'),[])!!}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                {!! Form::select('validation', config('lang_validation'),isset($locale) ? config('lang.'.$locale.'.validation') : '',['title'=>trans('messages.select_one')])!!}
+                                {!! Form::label('validation',trans('messages.validation').' '.trans('messages.language'),[])!!}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+
+                                </button>
+                            </div>
+                        </div>
                     </div>
-			      @foreach($modules as $module)
-					<div class="tab-pane" id="_{{ $module }}">
-						<div class="panel panel-default">
-                    		<div class="panel-heading">
-                    			<strong>{{ trans('messages.'.$module) }}</strong> {{ trans('messages.translation') }}
-                    		</div>
-                    		<div class="panel-body">
-					    		{!! Form::model($language,['method' => 'PATCH','route' => ['language.update-translation',$locale] ,'class' => 'form-horizontal','id'=>'language_translation_'.$module, 'data-no-form-clear' => 1]) !!}
-								@foreach($words as $key => $word)
-									@if($word['module'] == $module)
-									<div class="form-group">
-								    	{!! Form::label($key,$word['value'],['class'=>'col-sm-6 control-label pull-left'])!!}
-										<div class="col-sm-6">
-											@if($locale == 'en')
-											{!! Form::input('text',$key,(array_key_exists($key, $translation)) ? $translation[$key] : $word['value'],['class'=>'form-control','placeholder'=>trans('messages.translation')])!!}
-											@else
-											{!! Form::input('text',$key,(array_key_exists($key, $translation)) ? $translation[$key] : '',['class'=>'form-control','placeholder'=>trans('messages.translation')])!!}
-											@endif
-										</div>
-								  	</div>
-								  	@endif
-								@endforeach
-								{!! Form::hidden('module',$module) !!}
-								{!! Form::submit(trans('messages.save'),['class' => 'btn btn-primary pull-right']) !!}
-								{!! Form::close() !!}
-                    		</div>
-                    	</div>
-					</div>
-				  @endforeach
-			    </div>
-			</div>  
-		</div>
+                    {!! Form::close() !!}
 
-	@stop
+                </div>
+            </li>
+
+            @foreach($modules as $module)
+            <li>
+                <div class="collapsible-header ">{!! trans('messages.'.$module) !!} ({{ $word_count[$module] }})</div>
+                <div class="collapsible-body">
+                    <div class="row col s12">
+
+                        <strong>{{ trans('messages.'.$module) }}</strong> {{ trans('messages.translation') }}
+
+                        {!! Form::model($language,['method' => 'PATCH','route' => ['language.update-translation',$locale] ,'class' => 'form-horizontal','id'=>'language_translation_'.$module, 'data-no-form-clear' => 1]) !!}
+                        @foreach($words as $key => $word)
+                        @if($word['module'] == $module)
+                        <div class="input-field col s6">
+                            {!! Form::label($key,$word['value'],['class'=>'col-sm-6 control-label pull-left'])!!}
+                           
+                                @if($locale == 'en')
+                                {!! Form::input('text',$key,(array_key_exists($key, $translation)) ? $translation[$key] : $word['value'],['class'=>'form-control','placeholder'=>trans('messages.translation')])!!}
+                                @else
+                                {!! Form::input('text',$key,(array_key_exists($key, $translation)) ? $translation[$key] : '',['class'=>'form-control','placeholder'=>trans('messages.translation')])!!}
+                                @endif
+                             {!! Form::label($key,$word['value'],[])!!}
+                        </div>
+                        @endif
+                        @endforeach
+                        {!! Form::hidden('module',$module) !!}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action">{{isset($buttonText) ? $buttonText : trans('messages.save')}}
+
+                                </button>
+                            </div>
+                        </div>
+
+                        {!! Form::close() !!}
+
+
+                    </div>
+
+
+                </div>
+            </li>
+            @endforeach
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@stop
