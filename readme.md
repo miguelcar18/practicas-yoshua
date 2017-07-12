@@ -8,3 +8,14 @@ Instalación
 5.- Reiniciar Apache.
 6.- Ingregar a traves del navegador a localhost o la direccion destinada para el servicio.
 7. ingresar las credenciales correo:secretadmin@gmail.com y password secretadmin.
+
+-------------------------------------
+Instalación usando Migration y Seeders
+1.- Descomprimir el archivo myVendors.zip
+2.-Crear la base de datos a conectarse
+3.- Configurar el archivo .env con los datos a la base de datos a conectarse
+4.- Ejecutar el comando php artisan migrate --seed
+---------------------------------------
+En caso de ejecutar el comando composer install, en lugar de descomprimir el archivo myVendors.zip
+ejecutar el comando: composer dump-autoload -o y posteriormente el comando php artisan migrate --seed
+
