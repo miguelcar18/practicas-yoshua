@@ -35,7 +35,9 @@ $(document).ready(function(){
          success: function(response) {
             if(response.status == 'success'){
               $('#user-email-form #mail_subject').val(response.subject);
-              $('#user-email-form #mail_body').summernote('code', response.body);
+              //$('#mail_body').html(response.body);
+              CKEDITOR.instances['mail_body'].setData(response.body)
+             // $('#user-email-form #mail_body').summernote('code', response.body);
             }
          },
       });

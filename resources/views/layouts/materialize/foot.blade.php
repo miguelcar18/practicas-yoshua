@@ -59,6 +59,8 @@ Scripts
 {!! Html::script('assets/js/textAvatar.js') !!}
 {!! Html::script('assets/vendor/switch/bootstrap-switch.min.js') !!}
 {!! Html::script('assets/vendor/fileinput/fileinput.min.js') !!}
+<!-- Ckeditor -->
+<script type="text/javascript" src="{{asset('ckeditor/ckeditor.js')}}"></script>
 
 @if(in_array('recaptcha',$assets))
 <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -83,7 +85,7 @@ $.ajaxSetup({
  
 
 
-yield('scripts')
+ @yield('scripts')
 
 
 

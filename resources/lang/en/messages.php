@@ -296,6 +296,4 @@
   'table' => 'Table',
   'datepicker' => 'Date Picker',
   'datetimepicker' => 'Date Time Picker',
-  'close' => 'Close',
- 
 );

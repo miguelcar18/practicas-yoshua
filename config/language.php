@@ -1489,4 +1489,9 @@
     'value' => 'tt',
     'module' => 'tt',
   ),
+  'ss' => 
+  array (
+    'value' => 'sent',
+    'module' => 'me',
+  ),
 );

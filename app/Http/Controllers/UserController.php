@@ -13,6 +13,7 @@ use Entrust;
 use App\Notifications\ActivationToken;
 use App\Notifications\UserStatusChange;
 use Carbon\Carbon;
+use Mail;
 
 class UserController extends Controller {
 
@@ -489,7 +490,7 @@ class UserController extends Controller {
             $mail['email'] = $user->email;
             $mail['subject'] = $template->subject;
 
-            \Mail::send('emails.email', compact('body'), function($message) use ($mail) {
+            Mail::send('emails.email', compact('body'), function($message) use ($mail) {
                 $message->to($mail['email'])->subject($mail['subject']);
             });
             $this->logEmail(array('to' => $mail['email'], 'subject' => $mail['subject'], 'body' => $body));
@@ -569,7 +570,7 @@ class UserController extends Controller {
 
         $validation = Validator::make($request->all(), [
                     'subject' => 'required',
-                    'body' => 'required'
+                    //'body' => 'required'
         ]);
 
         if ($validation->fails()) {
@@ -579,13 +580,16 @@ class UserController extends Controller {
             }
             return redirect()->back()->withErrors($validation->messages()->first());
         }
-
+                  
+        
         $user = User::find($id);
         $mail['email'] = $user->email;
         $mail['subject'] = $request->input('subject');
         $body = $request->input('body');
+        
+        
 
-        \Mail::send('emails.email', compact('body'), function($message) use ($mail) {
+        Mail::send('emails.email', compact('body'), function($message) use ($mail) {
             $message->to($mail['email'])->subject($mail['subject']);
         });
         $this->logEmail(array('to' => $mail['email'], 'subject' => $mail['subject'], 'body' => $body));
