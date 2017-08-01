@@ -24,8 +24,18 @@
 
 <div class="row">
     <div class="input-field col s12">
-        <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.save')); ?>
+        <button class="btn waves-effect waves-light light-blue darken-4 right" type="submit" name="action"><?php echo e(isset($buttonText) ? $buttonText : trans('messages.send')); ?>
 
         </button>
     </div>
 </div>    <?php echo Form::close(); ?>
+
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    
+  CKEDITOR.replace('mail_body');  
+    
+
+</script>
+<?php $__env->stopSection(); ?>

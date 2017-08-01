@@ -66,6 +66,8 @@ Scripts
 
 <?php echo Html::script('assets/vendor/fileinput/fileinput.min.js'); ?>
 
+<!-- Ckeditor -->
+<script type="text/javascript" src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
 
 <?php if(in_array('recaptcha',$assets)): ?>
 <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -92,7 +94,7 @@ $.ajaxSetup({
  
 
 
-yield('scripts')
+ <?php echo $__env->yieldContent('scripts'); ?>
 
 
 

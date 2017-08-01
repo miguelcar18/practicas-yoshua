@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('breadcrumbs'); ?>
 <h5 class="breadcrumbs-title">Show</h5>
 <ul class="breadcrumbs">
