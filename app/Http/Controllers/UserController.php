@@ -570,7 +570,7 @@ class UserController extends Controller {
 
         $validation = Validator::make($request->all(), [
                     'subject' => 'required',
-                    //'body' => 'required'
+                    'body' => 'required'
         ]);
 
         if ($validation->fails()) {
