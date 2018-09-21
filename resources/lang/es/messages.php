@@ -7,4 +7,5 @@
   'activity_switched' => 'Cambiado',
   'activity_trashed' => 'Destrozado',
   'activity_updated' => 'Actualizado',
+  'ss' => 'Enviar',
 );

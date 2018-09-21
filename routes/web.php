@@ -154,3 +154,5 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	Route::post('/change-password',array('as'=>'change-password','uses' =>'UserController@doChangePassword'));
 	Route::post('/user/email/{id}',array('as' => 'user.email', 'uses' => 'UserController@email'));
 });
+
+Route::resource('apartments','ApartmentController');
