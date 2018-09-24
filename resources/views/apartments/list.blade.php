@@ -12,11 +12,12 @@
 
 @section('content')
 
-@include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'user/create','buttonMessage'=>trans('messages.add_new'),'message'=>''])
+@include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'apartments/create','buttonMessage'=>trans('messages.add_new'),'message'=>''])
 
 {{-- @include('common.materialize.datatable',['table' => $table_data['user-table']]) --}}
 <div class="container">
-    <table  class="datatable responsive-table display "
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <table  class="datatabl responsive-table display "
         data-table-source="{{ $table['source'] }}"
          data-table-title="{{ $table['title'] }}"
                        id="{{ $table['id'] }}" 
@@ -34,13 +35,17 @@
         <tbody>
             @foreach($apartments as $apartment)
                 <td>
-                    <button>dele</button>
-                    <button>view</button>
+                    <div>
+                        <a href="/apartments/{{$apartment->id}}/edit"><div class="material-icons" >edit</div></a>
+                    </div>
+                    <div>
+                        <a href="/apartments"><div class="material-icons" >delete</div></a>
+                    </div>
                 </td> 
                <td>{{ $apartment->code }}</td>
                <td>{{ $apartment->owner }}</td>
                <td>{{ $apartment->email }}</td>
-               <td>{{ $apartment->status }}</td>
+               <td>{{ $apartment->status() }}</td>
                
             @endforeach                
         </tbody>

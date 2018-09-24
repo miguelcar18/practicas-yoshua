@@ -38,6 +38,9 @@
         <!--<link href="{{asset('materialize/js/plugins/chartist-js/chartist.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">-->
         <link href="{{asset('materialize/js/plugins/data-tables/css/jquery.dataTables.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
 
+        <!-- MATERIALIZE ICONS -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
         {!! Html::style('assets/vendor/icheck/skins/flat/blue.css') !!}
         {!! Html::style('assets/vendor/toastr/toastr.min.css') !!}

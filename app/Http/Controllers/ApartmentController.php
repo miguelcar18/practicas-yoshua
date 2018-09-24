@@ -115,6 +115,8 @@ class ApartmentController extends Controller
     public function edit($id)
     {
         //
+        $apartment = Apartment::findOrFail($id)->first();
+        return view('apartments.edit',compact('apartment'));
     }
 
     /**
@@ -127,6 +129,7 @@ class ApartmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return 'aja caramba';
     }
 
     /**

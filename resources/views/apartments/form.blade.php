@@ -10,32 +10,53 @@
 	</div>
 @endif
 
+<div class="col s8 m8 l6">
+	<div class="card-panel">
+		<div class="row">
 
-<div class="form-group">
-	{!! Form::label('code', 'Identificador del Apartamento', ['for'=>'code']) !!}
-	{!! Form::text('code', $apartment->code, ['class'=>'form-control','required'=>'required']) !!}
-</div>
+			<div class="col-sm-6">
+			    
+			    <div class="input-field col s6">
+			        <i class="material-icons prefix">person</i>
+					<input type="text" name="owner" class="form-control validate" required="required" id="owner" value="{{$apartment->owner}}">
+					<label>Propietario</label>
+			    </div>
 
-<div class="form-group">
-	{!! Form::label('owner', 'Propietario', ['for'=>'owner']) !!}
-	{!! Form::text('owner', $apartment->owner, ['class'=>'form-control','required'=>'required']) !!}
-</div>
+			    <div class="input-field col s6">
+					<i class="material-icons prefix">store</i>
+					<input type="text" name="code" class="form-control validate" required="required" id="code" value="{{$apartment->code}}">
+					<label>Identificador de Apartamento</label>
+				</div>
 
-<div class="form-group">
-	{!! Form::label('phone', 'Telefono', ['for'=>'phone']) !!}
-	{!! Form::text('phone', $apartment->phone, ['class'=>'form-control','required'=>'required']) !!}
-</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">phone</i>
+					<input type="text" name="phone" class="form-control validate" required="required" id="phone" value="{{$apartment->phone}}">
+					<label>Telefono</label>
+				</div>
 
-<div class="form-group">
-	{!! Form::label('email', 'Correo electronico', ['for'=>'email'])!!}
-	{!! Form::text('email', $apartment->email, ['class'=>'form-control','required'=>'required'])!!}
-</div>
 
-<div class="form-group">
-	{!! Form::label('status', 'Status', ['for'=>'status']) !!}
-	{!! Form::text('status', $apartment->status, ['class'=>'form-control','required'=>'required']) !!}
-</div>
+				<div class="input-field col s6">
+					<i class="material-icons prefix">email</i>
+					<input type="email" name="email" class="form-control validate" required="required" id="email" value="{{$apartment->email}}">
+					<label>Correo electronico</label>
+				</div>
+					  
+				{{$apartment->status()}}
+				<div class="input-field col s6">
+					<select type=number name="status" class="form-control" required="required" id="status" >
+						  <option value="" disabled selected></option>
+						  <option value="1">Activo</option>
+						  <option value="0">Inactivo</option>
+					</select>
+					<label>Selecciona el estatus</label>
+				</div>
 
-<div>
-	{!! Form::submit('Registrar', ['class'=>'btn btn-primary']) !!}
-</div>
+				<div class="input-field col s6">
+					<button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+						<i class="material-icons right">send</i>
+					</button>	
+				</div>
+				
+			</div>
+
+		</div>

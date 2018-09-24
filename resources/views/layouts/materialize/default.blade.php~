@@ -38,6 +38,7 @@
         <link href="{{asset('materialize/js/plugins/prism/prism.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
         <link href="{{asset('materialize/js/plugins/chartist-js/chartist.min.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+
     </head>
  {!! Html::style('assets/vendor/bootstrap/css/bootstrap.min.css') !!}
     {!! Html::style('assets/vendor/metisMenu/metisMenu.min.css') !!}

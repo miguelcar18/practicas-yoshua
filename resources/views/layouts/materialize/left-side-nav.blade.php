@@ -46,8 +46,8 @@
                     <div class="collapsible-body">
                         <ul>
                             @if(Entrust::can('manage-user'))
-                            <li><a href="user">Users</a>
-                            </li>
+                            <li><a href="user">Users</a></li>
+                            <li><a href="/apartments">Apartments</a></li>
                             @endif
 
 

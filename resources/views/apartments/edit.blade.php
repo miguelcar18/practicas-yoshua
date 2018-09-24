@@ -17,13 +17,11 @@
 --}}
 
 
-<form method="POST" action="/apartments">
+<form method="POST" action="/apartments/{{$apartment->id}}">
+	 <input type="hidden" name="_method" value="PUT">
 
 	@include('apartments.form')
 
 </form>
 
 @stop
-
-
-			
