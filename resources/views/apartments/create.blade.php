@@ -17,7 +17,7 @@
 --}}
 
 
-<form method="POST" action="/apartments">
+<form method="POST" action="/apartments" id="form-apartments-store">
 
 	@include('apartments.form')
 

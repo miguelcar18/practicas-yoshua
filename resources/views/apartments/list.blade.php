@@ -1,11 +1,11 @@
     @extends('layouts.materialize.default')
 
 @section('breadcrumbs')
-<h5 class="breadcrumbs-title">User</h5>
+<h5 class="breadcrumbs-title">Apartments</h5>
 <ol class="breadcrumbs">
-    <li><a href="user">User</a></li>
-    <li><a href="#">Index</a></li>
-    <li class="active">User</li>
+    <li><a href="home">Home</a></li>
+    <li><a href="apartments">Apartments</a></li>
+    <li class="active">List</li>
 </ol>
 
 @stop
@@ -34,19 +34,16 @@
         </thead>
         <tbody>
             @foreach($apartments as $apartment)
+            <tr>
                 <td>
-                    <div>
-                        <a href="/apartments/{{$apartment->id}}/edit"><div class="material-icons" >edit</div></a>
-                    </div>
-                    <div>
-                        <a href="/apartments"><div class="material-icons" >delete</div></a>
-                    </div>
+                    <a href="/apartments/{{$apartment->id}}/edit"><div class="material-icons" >edit</div></a>
+                    <a href="/apartments"><div class="material-icons" >delete</div></a>
                 </td> 
                <td>{{ $apartment->code }}</td>
                <td>{{ $apartment->owner }}</td>
                <td>{{ $apartment->email }}</td>
                <td>{{ $apartment->status() }}</td>
-               
+            </tr>
             @endforeach                
         </tbody>
         <tfoot>

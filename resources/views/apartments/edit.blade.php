@@ -16,10 +16,9 @@
 @include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/apartments','buttonMessage'=>trans('messages.list_all'),'message'=>trans('messages.add_new')])
 --}}
 
-
-<form method="POST" action="/apartments/{{$apartment->id}}">
-	 <input type="hidden" name="_method" value="PUT">
-
+{{$apartment->status}}
+<form method="POST" action="/apartments/{{$apartment->id}}" id="form-apartments-update">
+	{{ method_field('PUT') }}
 	@include('apartments.form')
 
 </form>

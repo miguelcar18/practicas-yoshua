@@ -41,10 +41,9 @@
 					<label>Correo electronico</label>
 				</div>
 					  
-				{{$apartment->status()}}
 				<div class="input-field col s6">
-					<select type=number name="status" class="form-control" required="required" id="status" >
-						  <option value="" disabled selected></option>
+					<select name="status" class="form-control" required="required" id="status" >
+						  <option value="" disabled selected:""></option>
 						  <option value="1">Activo</option>
 						  <option value="0">Inactivo</option>
 					</select>
@@ -56,6 +55,8 @@
 						<i class="material-icons right">send</i>
 					</button>	
 				</div>
+
+
 				
 			</div>
 

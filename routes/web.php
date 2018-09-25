@@ -153,6 +153,22 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	Route::get('/change-password', 'UserController@changePassword');
 	Route::post('/change-password',array('as'=>'change-password','uses' =>'UserController@doChangePassword'));
 	Route::post('/user/email/{id}',array('as' => 'user.email', 'uses' => 'UserController@email'));
+
+	
+	Route::resource('apartments','ApartmentController');
+	/*
+	Route::get('/apartments','ApartmentController@index');
+	Route::get('/apartments/create','ApartmentController@create'); 
+	Route::get('/apartments/{id}/edit','ApartmentController@edit');
+	
+	//Route::post('/apartments','ApartmentController@store');          <--
+	Route::post('/apartments/create','ApartmentController@store');     //-->fail
+
+	//Route::patch('/apartments/{id}','ApartmentController@update');   <--
+	Route::get('/apartments/{id}/edit','ApartmentController@update');  //-->fail
+	*/
+
 });
 
-Route::resource('apartments','ApartmentController');
+
+

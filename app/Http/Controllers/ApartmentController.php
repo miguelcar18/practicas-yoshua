@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Validation\Rule;
 use App\Apartment;
 use Validator;
 
@@ -77,11 +78,11 @@ class ApartmentController extends Controller
     {
         //
         Validator::make($request->all(), [
-                 'code' => 'required|max:45|unique:apartments',
+                 'code' => 'required|numeric|unique:apartments',
                 'owner' => 'required|max:255',
-                'phone' => 'required|max:45',
-                'email' => 'required|max:100',
-               'status' => 'required|max:1',
+                'phone' => 'required|numeric',
+                'email' => 'required|max:100|email',
+               'status' => 'required|max:1|boolean',
             ])->validate();
         
         $apartment = new Apartment();
@@ -92,7 +93,7 @@ class ApartmentController extends Controller
         $apartment->status = $request->status;
         $apartment->save();
 
-        return 'fine';
+         return redirect('/apartments');
     }
 
     /**
@@ -115,7 +116,7 @@ class ApartmentController extends Controller
     public function edit($id)
     {
         //
-        $apartment = Apartment::findOrFail($id)->first();
+        $apartment = Apartment::findOrFail($id);
         return view('apartments.edit',compact('apartment'));
     }
 
@@ -126,10 +127,27 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Apartment $apartment)
     {
         //
-        return 'aja caramba';
+        Validator::make($request->all(), [
+                 //'code' => 'present|max:45|unique:apartments,code,'.$apartment->id,
+                 'code' => 'present|numeric|'.Rule::unique('apartments')->ignore($apartment->id),
+                'owner' => 'present|max:255',
+                'phone' => 'present|numeric',
+                'email' => 'present|max:100|email',
+               'status' => 'present|max:1|boolean',
+            ])->validate();
+        
+        if ($request->code != '') {$apartment->code = $request->code;echo'entro:'.$request->code;}
+        if ($request->owner != '') {$apartment->owner = $request->owner;echo'entro:'.$request->owner;}
+        if ($request->phone != '') {$apartment->phone = $request->phone;echo'entro:'.$request->phone;}
+        if ($request->email != '') {$apartment->email = $request->email;echo'entro:'.$request->email;}
+        if ($request->status != '') {$apartment->status = $request->status;echo'entro:'.$request->status;}
+
+        $apartment->save();
+
+         return redirect('/apartments');
     }
 
     /**

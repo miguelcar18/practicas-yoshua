@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     var toastr_position = $('#js-var').attr('data-toastr-position');
@@ -194,13 +195,15 @@ $(document).ready(function () {
 
         });
     }
-    /*var dt_dom = "<'row'<'col-sm-5 margin-left-10'li><'col-sm-5 pull-right margin-right-10'f>>" +
+    /*
+    var dt_dom = "<'row'<'col-sm-5 margin-left-10'li><'col-sm-5 pull-right margin-right-10'f>>" +
      "<'row'<'col-sm-12'tr>>" +
      "<'row'<'col-sm-4 margin-left-10'B><'col-sm-6 pull-right margin-right-10'p>>";
      
      var dt_dom = "<'row'>" +
      "<'row'>" +
-     "<'row'>";*/
+     "<'row'>";
+     */
 
     var oTable = [];
     if ($('.datatable').length > 0)
@@ -485,8 +488,6 @@ $(document).ready(function () {
         });
         select.val(newValuesArr);
     });
-
-
 
 
 

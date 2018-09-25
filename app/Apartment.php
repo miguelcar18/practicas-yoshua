@@ -13,7 +13,7 @@ class Apartment extends Model
 
 
 	public function status(){
-		if ($this->id === 1) {
+		if ($this->status == 1) {
 			return 'Activo';
 		}else{
 			return 'Inactivo';
