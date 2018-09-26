@@ -36,8 +36,23 @@
             @foreach($apartments as $apartment)
             <tr>
                 <td>
-                    <a href="/apartments/{{$apartment->id}}/edit"><div class="material-icons" >edit</div></a>
-                    <a href="/apartments"><div class="material-icons" >delete</div></a>
+                    <a href="/apartments/{{$apartment->id}}/edit" ><div class="material-icons" >edit</div></a>
+                    <form method="POST" action="/apartments/{{$apartment->id}}" id="form-apartments-delete">
+                        {{ csrf_field() }} 
+                        {{ method_field('DELETE') }}
+                        <button data-toggle="tooltip"
+                                      title="Delete"
+                                      style=" outline: none;
+                                            background: transparent;
+                                                border: none;
+                                                font-size:20px;
+                                                width:3px;
+                                                heigth:3px" 
+                                     class="mdi-action-delete"
+                                     data-submit-confirm-text="Yes"
+                                     type="submit">
+                        </button>
+                    </form>
                 </td> 
                <td>{{ $apartment->code }}</td>
                <td>{{ $apartment->owner }}</td>

@@ -10,11 +10,7 @@ use Validator;
 
 class ApartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         //
@@ -56,27 +52,14 @@ class ApartmentController extends Controller
         */
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
         $apartment = new Apartment();
         return view('apartments.create',compact('apartment'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
         Validator::make($request->all(), [
                  'code' => 'required|numeric|unique:apartments',
                 'owner' => 'required|max:255',
@@ -93,45 +76,28 @@ class ApartmentController extends Controller
         $apartment->status = $request->status;
         $apartment->save();
 
-         return redirect('/apartments');
+         //return redirect('/apartments');
+         return response()->json([
+                    'message'=>'Datos de Guardados.',
+                    'status' => "success",
+                ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
         $apartment = Apartment::findOrFail($id);
         return view('apartments.edit',compact('apartment'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Apartment $apartment)
     {
-        //
         Validator::make($request->all(), [
-                 //'code' => 'present|max:45|unique:apartments,code,'.$apartment->id,
+                 //'code' => 'present|numeric|unique:apartments,code,'.$apartment->id,
                  'code' => 'present|numeric|'.Rule::unique('apartments')->ignore($apartment->id),
                 'owner' => 'present|max:255',
                 'phone' => 'present|numeric',
@@ -146,18 +112,16 @@ class ApartmentController extends Controller
         if ($request->status != '') {$apartment->status = $request->status;echo'entro:'.$request->status;}
 
         $apartment->save();
-
-         return redirect('/apartments');
+        return response()->json([
+                    'message'=>'Datos de Guardados.',
+                    'status' => "success",
+                ]);
+        //return redirect('/apartments');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect('/apartments');
     }
 }

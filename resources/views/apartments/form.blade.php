@@ -42,7 +42,7 @@
 				</div>
 					  
 				<div class="input-field col s6">
-					<select name="status" class="form-control" required="required" id="status" selected:"{{$apartment->status}}">
+					<select name="status" class="form-control" required="required" id="status" >
 						  <option value="" disabled ></option>
 						  <option value="1">Activo</option>
 						  <option value="0">Inactivo</option>
