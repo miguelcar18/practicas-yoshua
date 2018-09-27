@@ -156,6 +156,7 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 
 	
 	Route::resource('apartments','ApartmentController');
+	Route::post('/apartments/lists','ApartmentController@lists');
 	/*
 	Route::get('/apartments','ApartmentController@index');
 	Route::get('/apartments/create','ApartmentController@create'); 

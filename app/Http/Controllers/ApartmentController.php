@@ -15,12 +15,26 @@ class ApartmentController extends Controller
     {
         //
         $apartments = Apartment::All();
-        $table = array('source' => 'apartments',
-                        'title' => 'Apartments List',
-                           'id' => 'apartments_table',
-                         //'data' => $col_heads
-                     );
-        return view('apartments.list', compact('apartments','table'));
+
+        $col_heads = array();
+
+        array_push($col_heads, trans('messages.option'));
+        array_push($col_heads, trans('messages.code'));
+        array_push($col_heads, trans('messages.owner'));
+        array_push($col_heads, trans('messages.email'));
+        array_push($col_heads, trans('messages.status'));
+
+
+        $table_data['apartment-table'] = array(
+           'source' => 'apartments',
+            'title' => 'Apartments List',
+               'id' => 'apartments_table',
+             'data' => $col_heads
+        );
+
+        $assets = ['recaptcha'];
+        return view('apartments.list', compact('apartments','table_data','assets'));
+
 
         /*
         if (!Entrust::can('manage-user'))
@@ -50,6 +64,48 @@ class ApartmentController extends Controller
         $assets = ['recaptcha'];
         return view('user.index', compact('table_data', 'assets'));
         */
+    }
+
+    public function lists()
+    {
+        $apartments = Apartment::all();
+
+        foreach ($apartments as $apartment) {
+            
+            $row = array(
+            '<div class="row col s5">' .
+                
+                '<a href="/apartments/' . $apartment->id . '" class="col s1 mdi-action-visibility" style="font-size:20px"><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="' . trans('messages.view') . '"></i></a>' .
+
+                '<a href="#" class="col s1 mdi-action-visibility" ></a>'.
+
+                '<a href="/apartments/' . $apartment->id . '/edit" ><div class="material-icons" >edit</div></a>'.
+                
+                '<a>
+                    <form method="POST" action="/apartments/' . $apartment->id. '" id="form-apartments-delete">'.
+                        csrf_field() .
+                        method_field('DELETE') .
+                        '<button data-toggle="tooltip" title="Delete" style=" outline: none; background: transparent; border: none; font-size:20px; width:3px; heigth:3px" class="mdi-action-delete" data-submit-confirm-text="Yes" type="submit"></button>
+                     </form>'.'</div>
+                 </a>');
+
+            $status = '';
+            if ($apartment->status === 1)
+                $status = '<span class="card blue card-content white-text">' . trans('messages.active') . '</span>';
+            elseif ($apartment->status === 0)
+                $status = '<span class="card red card-content white-text">' . trans('messages.inactive') . '</span>';
+
+            array_push($row, $apartment->code);
+            array_push($row, $apartment->owner);
+            array_push($row, $apartment->email);
+            array_push($row, $status);
+
+            $rows[] = $row;
+        }
+
+        $list['aaData'] = $rows;
+        return json_encode($list);
+        
     }
 
     public function create()

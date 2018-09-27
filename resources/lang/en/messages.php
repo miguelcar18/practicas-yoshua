@@ -1,5 +1,9 @@
 <?php return array (
   'user' => 'User',
+  'code' => 'Code',
+  'owner' => 'Owner',
+  'email' => 'Email',
+  'status' => 'Status',
   'login' => 'Login',
   'username' => 'Username',
   'password' => 'Password',
@@ -158,6 +162,7 @@
   'unable_to_delete_yourself' => 'You cannot delete yourself.',
   'networking' => 'Networking',
   'active' => 'Active',
+  'inactive' => 'Inactive',
   'banned' => 'Banned',
   'pending' => 'Pending',
   'session_expired' => 'Your session seems to be expired. Please login again.',
