@@ -68,26 +68,29 @@ class ApartmentController extends Controller
 
     public function lists()
     {
-        $apartments = Apartment::all();
+        
+        if (defaultRole())
+            $apartments = Apartment::all();
+        else
+            $apartments = Apartment::whereIsHidden(0)->get();
 
         foreach ($apartments as $apartment) {
             
             $row = array(
             '<div class="row col s5">' .
                 
-                '<a href="/apartments/' . $apartment->id . '" class="col s1 mdi-action-visibility" style="font-size:20px"><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="' . trans('messages.view') . '"></i></a>' .
+                '<a href="/apartments/' . $apartment->id . '" class="col s1 mdi-action-visibility" style="font-size:20px;" ><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="' . trans('messages.view') . '"></i></a>' .
 
-                '<a href="#" class="col s1 mdi-action-visibility" ></a>'.
-
-                '<a href="/apartments/' . $apartment->id . '/edit" ><div class="material-icons" >edit</div></a>'.
+                '<a href="/apartments/' . $apartment->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
                 
-                '<a>
+                '<a class="col s1" style="font-size:20px;">
                     <form method="POST" action="/apartments/' . $apartment->id. '" id="form-apartments-delete">'.
                         csrf_field() .
                         method_field('DELETE') .
                         '<button data-toggle="tooltip" title="Delete" style=" outline: none; background: transparent; border: none; font-size:20px; width:3px; heigth:3px" class="mdi-action-delete" data-submit-confirm-text="Yes" type="submit"></button>
-                     </form>'.'</div>
-                 </a>');
+                     </form>
+                </a>
+            </div>');
 
             $status = '';
             if ($apartment->status === 1)
@@ -132,16 +135,15 @@ class ApartmentController extends Controller
         $apartment->status = $request->status;
         $apartment->save();
 
-         //return redirect('/apartments');
-         return response()->json([
-                    'message'=>'Datos de Guardados.',
-                    'status' => "success",
-                ]);
+        return response()->json([
+            'message'=>'Datos de Guardados.',
+            'status' => "success",
+        ]);
     }
 
     public function show($id)
     {
-        //
+        return 'dfgagjhkjl';
     }
 
     public function edit($id)
@@ -161,18 +163,18 @@ class ApartmentController extends Controller
                'status' => 'present|max:1|boolean',
             ])->validate();
         
-        if ($request->code != '') {$apartment->code = $request->code;echo'entro:'.$request->code;}
-        if ($request->owner != '') {$apartment->owner = $request->owner;echo'entro:'.$request->owner;}
-        if ($request->phone != '') {$apartment->phone = $request->phone;echo'entro:'.$request->phone;}
-        if ($request->email != '') {$apartment->email = $request->email;echo'entro:'.$request->email;}
-        if ($request->status != '') {$apartment->status = $request->status;echo'entro:'.$request->status;}
+        if ($request->code != '') {$apartment->code = $request->code;}
+        if ($request->owner != '') {$apartment->owner = $request->owner;}
+        if ($request->phone != '') {$apartment->phone = $request->phone;}
+        if ($request->email != '') {$apartment->email = $request->email;}
+        if ($request->status != '') {$apartment->status = $request->status;}
 
         $apartment->save();
+
         return response()->json([
-                    'message'=>'Datos de Guardados.',
-                    'status' => "success",
-                ]);
-        //return redirect('/apartments');
+            'message'=>'Datos de Guardados.',
+            'status' => "success",
+        ]);
     }
 
     public function destroy(Apartment $apartment)

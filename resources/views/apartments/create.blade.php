@@ -8,22 +8,12 @@
     <li class="active">{!! trans('messages.add_new').' '.trans('messages.apartments') !!}</li>
 </ol>
 
-
 @stop
 
 @section('content')
-{{--
-@include('common.materialize.header-form-link',['icon' => 'mdi-image-timer-auto','url'=>'/apartments','buttonMessage'=>trans('messages.list_all'),'message'=>trans('messages.add_new')])
---}}
-
 
 <form method="POST" action="/apartments" id="form-apartments-store">
-
 	@include('apartments.form')
-
 </form>
 
 @stop
-
-
-			

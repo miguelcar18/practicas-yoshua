@@ -157,17 +157,7 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	
 	Route::resource('apartments','ApartmentController');
 	Route::post('/apartments/lists','ApartmentController@lists');
-	/*
-	Route::get('/apartments','ApartmentController@index');
-	Route::get('/apartments/create','ApartmentController@create'); 
-	Route::get('/apartments/{id}/edit','ApartmentController@edit');
 	
-	//Route::post('/apartments','ApartmentController@store');          <--
-	Route::post('/apartments/create','ApartmentController@store');     //-->fail
-
-	//Route::patch('/apartments/{id}','ApartmentController@update');   <--
-	Route::get('/apartments/{id}/edit','ApartmentController@update');  //-->fail
-	*/
 
 });
 
