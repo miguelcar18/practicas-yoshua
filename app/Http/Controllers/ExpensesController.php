@@ -45,9 +45,18 @@ class ExpensesController extends Controller
             $expenses = Expenses::whereIsHidden(0)->get();
 
         foreach ($expenses as $expense) {
-            
             $row = array(
             '<div class="row col s5">' .
+
+                (($expense->status == 1 /*&& Entrust::can('change-expenses-status')*/) ? 
+                    '<a href="#" class="col s1 mdi-navigation-close " style="font-size:20px" data-ajax="1" data-extra="&expense_id=' . $expense->id . '&status=' .$expense->status. '" data-source="/change-expenses-status">
+                        <i class="fa fa-ban" data-toggle="tooltip" title="' . trans('messages.inactive') . ' ' . trans('messages.expenses') . '"></i>
+                    </a>' : '') .
+
+                (($expense->status == 0 /*&& Entrust::can('change-expenses-status')*/) ?
+                    '<a href="#" class="col s1 mdi-navigation-check" style="font-size:20px" data-ajax="1" data-extra="&expense_id=' . $expense->id . '&status=' .$expense->status. '" data-source="/change-expenses-status">
+                        <i class="fa fa-check" data-toggle="tooltip" title="' . trans('messages.active') . ' ' . trans('messages.expenses') . '"></i>
+                    </a>' : '') .
 
                 '<a href="/expenses/' . $expense->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
                 
@@ -134,12 +143,34 @@ class ExpensesController extends Controller
         ]);
     }
 
-    public function destroy($expense)
+    public function changeStatus(Request $request)
+    {
+        $expense = Expenses::findOrFail($request->input('expense_id'));
+        Validator::make($request->all(), ['status' => 'present|max:1|boolean'])->validate();
+        
+        if ($request->input('status') == 1 ) 
+            $expense->status = 0;
+        elseif ($request->input('status') == 0 )
+            $expense->status = 1;
+
+        $expense->save();
+
+        if ($request->has('ajax_submit')) {
+            $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
+            return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
+        }
+        return 'OK';
+    }
+
+    public function destroy(Expenses $expense)
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
         
         $expense->delete();
-        return redirect('/expenses');
+        return response()->json([
+            'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
+            'status' => "success",
+        ]);
     }
 }

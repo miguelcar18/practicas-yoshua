@@ -7,6 +7,9 @@
   'expenses' => 'Expenses',
   'saved' => 'Saved',
   'list' => 'List',
+  'successful' => 'Successful',
+  'deletion' => 'Deletion',
+  'types' => 'Types',
 
   'email' => 'Email',
   'status' => 'Status',

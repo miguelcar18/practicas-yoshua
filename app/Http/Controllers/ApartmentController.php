@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Validation\Rule;
 use Validator;
 use Entrust;
@@ -51,6 +50,16 @@ class ApartmentController extends Controller
             $row = array(
             '<div class="row col s5">' .
                 
+                 (($apartment->status == 1 /*&& Entrust::can('change-apartments-status')*/) ? 
+                    '<a href="#" class="col s1 mdi-navigation-close " style="font-size:20px" data-ajax="1" data-extra="&apartment_id=' . $apartment->id . '&status=' .$apartment->status. '" data-source="/change-apartments-status">
+                        <i class="fa fa-ban" data-toggle="tooltip" title="' . trans('messages.inactive') . ' ' . trans('messages.apartment') . '"></i>
+                    </a>' : '') .
+
+                (($apartment->status == 0 /*&& Entrust::can('change-apetments-status')*/) ?
+                    '<a href="#" class="col s1 mdi-navigation-check" style="font-size:20px" data-ajax="1" data-extra="&apartment_id=' . $apartment->id . '&status=' .$apartment->status. '" data-source="/change-apartments-status">
+                        <i class="fa fa-check" data-toggle="tooltip" title="' . trans('messages.active') . ' ' . trans('messages.apartment') . '"></i>
+                    </a>' : '') .
+
                 '<a href="/apartments/' . $apartment->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
                 
                 '<a class="col s1" style="font-size:20px;">
@@ -145,12 +154,34 @@ class ApartmentController extends Controller
         ]);
     }
 
+    public function changeStatus(Request $request)
+    {
+        $apartment = Apartment::findOrFail($request->input('apartment_id'));
+        Validator::make($request->all(), ['status' => 'present|max:1|boolean'])->validate();
+        
+        if ($request->input('status') == 1 && $apartment->status == 1) 
+            $apartment->status = 0;
+        elseif ($request->input('status') == 0 && $apartment->status == 0)
+            $apartment->status = 1;
+
+        $apartment->save();
+
+        if ($request->has('ajax_submit')) {
+            $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
+            return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
+        }
+        return 'OK';
+    }
+
     public function destroy(Apartment $apartment)
     {
          if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
 
         $apartment->delete();
-        return redirect('/apartments');
+        return response()->json([
+            'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
+            'status' => "success",
+        ]);
     }
 }

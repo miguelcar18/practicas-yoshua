@@ -48,7 +48,7 @@
                             @if(Entrust::can('manage-user'))
                             <li><a href="user">Users</a></li>
                             <li><a href="/apartments">{{ trans('messages.apartments') }}</a></li>
-                            <li><a href="/expenses">{{ trans('messages.expenses') }}</a></li>
+                            <li><a href="/expenses">{{ trans('messages.types') .' '. trans('messages.expenses') }}</a></li>
                             @endif
 
 

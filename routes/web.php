@@ -157,8 +157,10 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	
 	Route::resource('apartments','ApartmentController');
 	Route::post('/apartments/lists','ApartmentController@lists');
+	Route::post('/change-apartments-status','ApartmentController@changeStatus');
 
 	Route::resource('/expenses','ExpensesController');
 	Route::post('/expenses/lists','ExpensesController@lists');
+	Route::post('/change-expenses-status','ExpensesController@changeStatus');
 
 });
