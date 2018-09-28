@@ -23,7 +23,7 @@
 			    </div>
 
 			    <div class="input-field col s6">
-					<i class="material-icons prefix">store</i>
+					<i class="material-icons prefix">home</i>
 					<input type="text" name="code" class="form-control validate" required="required" id="code" value="{{$apartment->code}}">
 					<label>{{ trans('messages.code') }}</label>
 				</div>

@@ -6,6 +6,7 @@
   'apartment' => 'Apartment',
   'expenses' => 'Expenses',
   'saved' => 'Saved',
+  'list' => 'List',
 
   'email' => 'Email',
   'status' => 'Status',
