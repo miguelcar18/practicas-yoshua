@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
-use App\Apartment;
 use Validator;
 use Entrust;
+
+use App\Apartment;
 
 class ApartmentController extends Controller
 {
@@ -16,8 +17,6 @@ class ApartmentController extends Controller
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
-
-        $apartments = Apartment::All();
 
         $col_heads = array();
 
@@ -36,42 +35,12 @@ class ApartmentController extends Controller
         );
 
         $assets = ['recaptcha'];
-        return view('apartments.list', compact('apartments','table_data','assets'));
-
-
-        /*
-        if (!Entrust::can('manage-user'))
-            return redirect('/home')->withErrors(trans('messages.permission_denied'));
-
-        $col_heads = array(
-            trans('messages.option'),
-            trans('messages.email')
-        );
-
-        if (!config('config.login'))
-            array_push($col_heads, trans('messages.username'));
-
-        array_push($col_heads, trans('messages.name'));
-        array_push($col_heads, trans('messages.role'));
-        array_push($col_heads, trans('messages.status'));
-        array_push($col_heads, trans('messages.signup') . ' ' . trans('messages.date'));
-        array_push($col_heads, trans('messages.last') . ' ' . trans('messages.login') . ' ' . trans('messages.date'));
-
-        $table_data['user-table'] = array(
-            'source' => 'user',
-            'title' => 'User List',
-            'id' => 'user_table',
-            'data' => $col_heads
-        );
-
-        $assets = ['recaptcha'];
-        return view('user.index', compact('table_data', 'assets'));
-        */
+        return view('apartments.list', compact('table_data','assets'));
+    
     }
 
     public function lists()
     {
-        
         if (defaultRole())
             $apartments = Apartment::all();
         else
@@ -82,8 +51,6 @@ class ApartmentController extends Controller
             $row = array(
             '<div class="row col s5">' .
                 
-                '<a href="/apartments/' . $apartment->id . '" class="col s1 mdi-action-visibility" style="font-size:20px;" ><i class="fa fa-arrow-circle-o-right" data-toggle="tooltip" title="' . trans('messages.view') . '"></i></a>' .
-
                 '<a href="/apartments/' . $apartment->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
                 
                 '<a class="col s1" style="font-size:20px;">
@@ -110,8 +77,7 @@ class ApartmentController extends Controller
         }
 
         $list['aaData'] = $rows;
-        return json_encode($list);
-        
+        return json_encode($list); 
     }
 
     public function create()
@@ -149,9 +115,8 @@ class ApartmentController extends Controller
         return redirect('/apartments');
     }
 
-    public function edit($id)
+    public function edit(Apartment $apartment)
     {
-        $apartment = Apartment::findOrFail($id);
         return view('apartments.edit',compact('apartment'));
     }
 
@@ -182,6 +147,9 @@ class ApartmentController extends Controller
 
     public function destroy(Apartment $apartment)
     {
+         if (!Entrust::can('manage-user'))
+            return redirect('/home')->withErrors(trans('messages.permission_denied'));
+
         $apartment->delete();
         return redirect('/apartments');
     }

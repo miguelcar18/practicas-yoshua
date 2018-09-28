@@ -4,6 +4,9 @@
   'owner' => 'Owner',
   'apartments' => 'Apartments',
   'apartment' => 'Apartment',
+  'expenses' => 'Expenses',
+  'saved' => 'Saved',
+
   'email' => 'Email',
   'status' => 'Status',
   'login' => 'Login',

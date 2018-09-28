@@ -1,7 +1,7 @@
 @extends('layouts.materialize.default')
 
 @section('breadcrumbs')
-<h5 class="breadcrumbs-title">Apartments</h5>
+<h5 class="breadcrumbs-title">{{ trans('messages.apartments') }}</h5>
 <ol class="breadcrumbs">
     <li><a href="/home">{!! trans('messages.home') !!}</a></li>
     <li><a href="/apartments">{!! trans('messages.apartments') !!}</a></li>
