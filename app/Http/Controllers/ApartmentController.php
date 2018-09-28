@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Apartment;
 use Validator;
+use Entrust;
 
 class ApartmentController extends Controller
 {
 
     public function index()
     {
-        //
+        if (!Entrust::can('manage-user'))
+            return redirect('/home')->withErrors(trans('messages.permission_denied'));
+
         $apartments = Apartment::All();
 
         $col_heads = array();
@@ -143,7 +146,7 @@ class ApartmentController extends Controller
 
     public function show($id)
     {
-        return 'dfgagjhkjl';
+        return redirect('/apartments');
     }
 
     public function edit($id)

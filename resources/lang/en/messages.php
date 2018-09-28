@@ -2,6 +2,8 @@
   'user' => 'User',
   'code' => 'Code',
   'owner' => 'Owner',
+  'apartments' => 'Apartments',
+  'apartment' => 'Apartment',
   'email' => 'Email',
   'status' => 'Status',
   'login' => 'Login',
