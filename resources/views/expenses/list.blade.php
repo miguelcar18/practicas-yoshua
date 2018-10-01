@@ -18,4 +18,3 @@
 
 
 @stop
-{{--'icon' => 'mdi-image-timer-auto'--}}

@@ -10,6 +10,8 @@
   'successful' => 'Successful',
   'deletion' => 'Deletion',
   'types' => 'Types',
+  'paymentmethod' => 'Paymentmethod',
+  'paymentmethods' => 'Paymentmethods',
 
   'email' => 'Email',
   'status' => 'Status',

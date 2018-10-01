@@ -7,17 +7,17 @@ use Illuminate\Validation\Rule;
 use Validator;
 use Entrust;
 
-use App\Expenses;
+use App\Paymentmethod;
 
-
-class ExpensesController extends Controller
+class PaymentmethodsController extends Controller
 {
+   
     public function index()
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
 
-        $expenses = Expenses::All();
+        $paymentmethods = Paymentmethod::All();
 
         $col_heads = array();
 
@@ -26,42 +26,42 @@ class ExpensesController extends Controller
         array_push($col_heads, trans('messages.description'));
         array_push($col_heads, trans('messages.status'));
 
-        $table_data['expenses-table'] = array(
-           'source' => 'expenses',
-            'title' => 'Expenses List',
-               'id' => 'expenses_table',
+        $table_data['paymentmethods-table'] = array(
+           'source' => 'paymentmethods',
+            'title' => 'Paymentmethods List',
+               'id' => 'paymentmethods_table',
              'data' => $col_heads
         );
 
         $assets = ['recaptcha'];
-        return view('expenses.list', compact('expenses','table_data','assets'));
-    } 
+        return view('paymentmethods.list', compact('paymentmethods','table_data','assets'));
+    }
 
     public function lists()
     {
         if (defaultRole())
-            $expenses = Expenses::all();
+            $paymentmethods = Paymentmethod::all();
         else
-            $expenses = Expenses::whereIsHidden(0)->get();
+            $paymentmethods = Paymentmethod::whereIsHidden(0)->get();
 
-        foreach ($expenses as $expense) {
+        foreach ($paymentmethods as $paymentmethod) {
             $row = array(
             '<div class="row col s5">' .
 
-                (($expense->status == 1 /*&& Entrust::can('change-expenses-status')*/) ? 
-                    '<a href="#" class="col s1 mdi-navigation-close " style="font-size:20px" data-ajax="1" data-extra="&expense_id=' . $expense->id . '&status=' .$expense->status. '" data-source="/change-expenses-status">
-                        <i class="fa fa-ban" data-toggle="tooltip" title="' . trans('messages.inactive') . ' ' . trans('messages.expenses') . '"></i>
+                (($paymentmethod->status == 1 /*&& Entrust::can('change-paymentmethods-status')*/) ? 
+                    '<a href="#" class="col s1 mdi-navigation-close " style="font-size:20px" data-ajax="1" data-extra="&paymentmethod_id=' . $paymentmethod->id . '&status=' .$paymentmethod->status. '" data-source="/change-paymentmethods-status">
+                        <i class="fa fa-ban" data-toggle="tooltip" title="' . trans('messages.inactive') . ' ' . trans('messages.paymentmethods') . '"></i>
                     </a>' : '') .
 
-                (($expense->status == 0 /*&& Entrust::can('change-expenses-status')*/) ?
-                    '<a href="#" class="col s1 mdi-navigation-check" style="font-size:20px" data-ajax="1" data-extra="&expense_id=' . $expense->id . '&status=' .$expense->status. '" data-source="/change-expenses-status">
-                        <i class="fa fa-check" data-toggle="tooltip" title="' . trans('messages.active') . ' ' . trans('messages.expenses') . '"></i>
+                (($paymentmethod->status == 0 /*&& Entrust::can('change-paymentmethods-status')*/) ?
+                    '<a href="#" class="col s1 mdi-navigation-check" style="font-size:20px" data-ajax="1" data-extra="&paymentmethod_id=' . $paymentmethod->id . '&status=' .$paymentmethod->status. '" data-source="/change-paymentmethods-status">
+                        <i class="fa fa-check" data-toggle="tooltip" title="' . trans('messages.active') . ' ' . trans('messages.paymentmethods') . '"></i>
                     </a>' : '') .
 
-                '<a href="/expenses/' . $expense->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
+                '<a href="/paymentmethods/' . $paymentmethod->id . '/edit" class="col s1" style="font-size:20px;" ><div class="material-icons" >edit</div></a>'.
                 
                 '<a class="col s1" style="font-size:20px;">
-                    <form method="POST" action="/expenses/' . $expense->id. '" id="form-expenses-delete">'.
+                    <form method="POST" action="/paymentmethods/' . $paymentmethod->id. '" id="form-paymentmethods-delete">'.
                         csrf_field() .
                         method_field('DELETE') .
                         '<button data-toggle="tooltip" title="Delete" style=" outline: none; background: transparent; border: none; font-size:20px; width:3px; heigth:3px" class="mdi-action-delete" data-submit-confirm-text="Yes" type="submit"></button>
@@ -70,13 +70,13 @@ class ExpensesController extends Controller
             </div>');
 
             $status = '';
-            if ($expense->status === 1)
+            if ($paymentmethod->status === 1)
                 $status = '<span class="card blue card-content white-text">' . trans('messages.active') . '</span>';
-            elseif ($expense->status === 0)
+            elseif ($paymentmethod->status === 0)
                 $status = '<span class="card red card-content white-text">' . trans('messages.inactive') . '</span>';
 
-            array_push($row, $expense->name);
-            array_push($row, $expense->description);
+            array_push($row, $paymentmethod->name);
+            array_push($row, $paymentmethod->description);
             array_push($row, $status);
 
             $rows[] = $row;
@@ -88,8 +88,8 @@ class ExpensesController extends Controller
 
     public function create()
     {
-        $expense = new Expenses;
-        return view('expenses.create',compact('expense'));
+        $paymentmethod = new Paymentmethod;
+        return view('paymentmethods.create',compact('paymentmethod'));
     }
 
     public function store(Request $request)
@@ -100,12 +100,12 @@ class ExpensesController extends Controller
                      'status' => 'required|max:1|boolean'
         ])->validate();
 
-        $expenses = new Expenses();
+        $paymentmethod = new Paymentmethod();
 
-        $expenses->name = $request->name;
-        $expenses->description = $request->description;
-        $expenses->status = $request->status;
-        $expenses->save();
+        $paymentmethod->name = $request->name;
+        $paymentmethod->description = $request->description;
+        $paymentmethod->status = $request->status;
+        $paymentmethod->save();
 
         return response()->json([
             'message'=> trans('messages.saved'),
@@ -118,24 +118,25 @@ class ExpensesController extends Controller
         
     }
 
-    public function edit(Expenses $expense)
+    
+    public function edit(Paymentmethod $paymentmethod)
     {
-        return view('expenses.edit',compact('expense'));
+        return view('paymentmethods.edit',compact('paymentmethod'));
     }
 
-    public function update(Request $request, Expenses $expense)
+    public function update(Request $request, Paymentmethod $paymentmethod)
     {
-         Validator::make($request->all(), [
+        Validator::make($request->all(), [
                  'name' => 'present|max:56|',
           'description' => 'present|max:255',
                'status' => 'present|max:1|boolean',
             ])->validate();
         
-        if ($request->name != '') {$expense->name = $request->name;}
-        if ($request->description != '') {$expense->description = $request->description;}
-        if ($request->status != '') {$expense->status = $request->status;}
+        if ($request->name != '') {$paymentmethod->name = $request->name;}
+        if ($request->description != '') {$paymentmethod->description = $request->description;}
+        if ($request->status != '') {$paymentmethod->status = $request->status;}
 
-        $expense->save();
+        $paymentmethod->save();
 
         return response()->json([
             'message'=> trans('messages.saved'),
@@ -145,15 +146,15 @@ class ExpensesController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $expense = Expenses::findOrFail($request->input('expense_id'));
+        $paymentmethod = Paymentmethod::findOrFail($request->input('paymentmethod_id'));
         Validator::make($request->all(), ['status' => 'present|max:1|boolean'])->validate();
         
         if ($request->input('status') == 1 ) 
-            $expense->status = 0;
+            $paymentmethod->status = 0;
         elseif ($request->input('status') == 0 )
-            $expense->status = 1;
+            $paymentmethod->status = 1;
 
-        $expense->save();
+        $paymentmethod->save();
 
         if ($request->has('ajax_submit')) {
             $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
@@ -162,15 +163,16 @@ class ExpensesController extends Controller
 
     }
 
-    public function destroy(Expenses $expense)
+    public function destroy(Paymentmethod $paymentmethod)
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
         
-        $expense->delete();
+        $paymentmethod->delete();
         return response()->json([
             'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
             'status' => "success",
         ]);
     }
+
 }

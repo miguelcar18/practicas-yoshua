@@ -163,4 +163,8 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	Route::post('/expenses/lists','ExpensesController@lists');
 	Route::post('/change-expenses-status','ExpensesController@changeStatus');
 
+	Route::resource('/paymentmethods','PaymentmethodsController');
+	Route::post('/paymentmethods/lists','PaymentmethodsController@lists');
+	Route::post('/change-paymentmethods-status','PaymentmethodsController@changeStatus');
+
 });
