@@ -11,13 +11,13 @@ use App\Paymentmethod;
 
 class PaymentmethodsController extends Controller
 {
+    //Log Activities
+    use BasicController;
    
     public function index()
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
-
-        $paymentmethods = Paymentmethod::All();
 
         $col_heads = array();
 
@@ -34,7 +34,7 @@ class PaymentmethodsController extends Controller
         );
 
         $assets = ['recaptcha'];
-        return view('paymentmethods.list', compact('paymentmethods','table_data','assets'));
+        return view('paymentmethods.list', compact('table_data','assets'));
     }
 
     public function lists()
@@ -101,11 +101,12 @@ class PaymentmethodsController extends Controller
         ])->validate();
 
         $paymentmethod = new Paymentmethod();
-
         $paymentmethod->name = $request->name;
         $paymentmethod->description = $request->description;
         $paymentmethod->status = $request->status;
         $paymentmethod->save();
+
+        $this->logActivity(['module' => 'paymentmethods','activity' => 'paymentmethods_create']);
 
         return response()->json([
             'message'=> trans('messages.saved'),
@@ -115,9 +116,8 @@ class PaymentmethodsController extends Controller
 
     public function show($id)
     {
-        
+        return redirect('errors.404');
     }
-
     
     public function edit(Paymentmethod $paymentmethod)
     {
@@ -138,6 +138,8 @@ class PaymentmethodsController extends Controller
 
         $paymentmethod->save();
 
+        $this->logActivity(['module' => 'paymentmethods','activity' => 'paymentmethods_update']);
+
         return response()->json([
             'message'=> trans('messages.saved'),
             'status' => "success",
@@ -156,6 +158,8 @@ class PaymentmethodsController extends Controller
 
         $paymentmethod->save();
 
+        $this->logActivity(['module' => 'paymentmethods','activity' => 'paymentmethods_status_change']);
+
         if ($request->has('ajax_submit')) {
             $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
@@ -169,6 +173,9 @@ class PaymentmethodsController extends Controller
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
         
         $paymentmethod->delete();
+
+        $this->logActivity(['module' => 'paymentmethods','activity' => 'paymentmethods_deleted']);
+
         return response()->json([
             'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
             'status' => "success",

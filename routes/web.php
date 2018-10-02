@@ -155,7 +155,7 @@ Route::group(['middleware' => ['auth','web','account','two_factor_auth','lock_sc
 	Route::post('/user/email/{id}',array('as' => 'user.email', 'uses' => 'UserController@email'));
 
 	
-	Route::resource('apartments','ApartmentController');
+	Route::resource('/apartments','ApartmentController');
 	Route::post('/apartments/lists','ApartmentController@lists');
 	Route::post('/change-apartments-status','ApartmentController@changeStatus');
 

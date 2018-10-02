@@ -12,12 +12,13 @@ use App\Expenses;
 
 class ExpensesController extends Controller
 {
+    //Log Activities
+    use BasicController;
+
     public function index()
     {
         if (!Entrust::can('manage-user'))
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
-
-        $expenses = Expenses::All();
 
         $col_heads = array();
 
@@ -34,7 +35,7 @@ class ExpensesController extends Controller
         );
 
         $assets = ['recaptcha'];
-        return view('expenses.list', compact('expenses','table_data','assets'));
+        return view('expenses.list', compact('table_data','assets'));
     } 
 
     public function lists()
@@ -101,11 +102,12 @@ class ExpensesController extends Controller
         ])->validate();
 
         $expenses = new Expenses();
-
         $expenses->name = $request->name;
         $expenses->description = $request->description;
         $expenses->status = $request->status;
         $expenses->save();
+
+        $this->logActivity(['module' => 'expenses','activity' => 'expenses_create']);
 
         return response()->json([
             'message'=> trans('messages.saved'),
@@ -115,7 +117,7 @@ class ExpensesController extends Controller
 
     public function show($id)
     {
-        
+        return redirect('errors.404');
     }
 
     public function edit(Expenses $expense)
@@ -137,6 +139,8 @@ class ExpensesController extends Controller
 
         $expense->save();
 
+        $this->logActivity(['module' => 'expenses','activity' => 'expenses_update']);
+
         return response()->json([
             'message'=> trans('messages.saved'),
             'status' => "success",
@@ -155,6 +159,8 @@ class ExpensesController extends Controller
 
         $expense->save();
 
+        $this->logActivity(['module' => 'expenses','activity' => 'expenses_status_change']);
+
         if ($request->has('ajax_submit')) {
             $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
@@ -168,6 +174,9 @@ class ExpensesController extends Controller
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
         
         $expense->delete();
+
+        $this->logActivity(['module' => 'expenses','activity' => 'expenses_deleted']);
+
         return response()->json([
             'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
             'status' => "success",

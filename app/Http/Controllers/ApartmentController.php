@@ -11,6 +11,8 @@ use App\Apartment;
 
 class ApartmentController extends Controller
 {
+    //Log Activities
+    use BasicController;
 
     public function index()
     {
@@ -113,6 +115,8 @@ class ApartmentController extends Controller
         $apartment->status = $request->status;
         $apartment->save();
 
+        $this->logActivity(['module' => 'apartments','activity' => 'apartments_create']);
+
         return response()->json([
             'message'=>'Datos de Guardados.',
             'status' => "success",
@@ -121,7 +125,7 @@ class ApartmentController extends Controller
 
     public function show($id)
     {
-        return redirect('/apartments');
+        return redirect('errors.404');
     }
 
     public function edit(Apartment $apartment)
@@ -132,8 +136,7 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         Validator::make($request->all(), [
-                 //'code' => 'present|numeric|unique:apartments,code,'.$apartment->id,
-                 'code' => 'present|numeric|'.Rule::unique('apartments')->ignore($apartment->id),
+                 'code' => 'present|numeric|unique:apartments,code,'.$apartment->id,
                 'owner' => 'present|max:255',
                 'phone' => 'present|numeric',
                 'email' => 'present|max:100|email',
@@ -147,7 +150,9 @@ class ApartmentController extends Controller
         if ($request->status != '') {$apartment->status = $request->status;}
 
         $apartment->save();
-
+        
+        $this->logActivity(['module' => 'apartments','activity' => 'apartments_update']);
+        
         return response()->json([
             'message'=>'Datos de Guardados.',
             'status' => "success",
@@ -159,18 +164,20 @@ class ApartmentController extends Controller
         $apartment = Apartment::findOrFail($request->input('apartment_id'));
         Validator::make($request->all(), ['status' => 'present|max:1|boolean'])->validate();
         
-        if ($request->input('status') == 1 && $apartment->status == 1) 
+        if ($request->input('status') == 1) 
             $apartment->status = 0;
-        elseif ($request->input('status') == 0 && $apartment->status == 0)
+        elseif ($request->input('status') == 0)
             $apartment->status = 1;
 
         $apartment->save();
+
+        $this->logActivity(['module' => 'apartments','activity' => 'apartments_change_status']);
 
         if ($request->has('ajax_submit')) {
             $response = ['message' => trans('messages.status') . ' ' . trans('messages.updated'), 'status' => 'success'];
             return response()->json($response, 200, array('Access-Controll-Allow-Origin' => '*'));
         }
-        return 'OK';
+
     }
 
     public function destroy(Apartment $apartment)
@@ -179,9 +186,13 @@ class ApartmentController extends Controller
             return redirect('/home')->withErrors(trans('messages.permission_denied'));
 
         $apartment->delete();
+
+        $this->logActivity(['module' => 'apartments','activity' => 'apartments_deleted']);
+
         return response()->json([
             'message'=> trans('messages.successful') .' '. trans('messages.deletion'),
             'status' => "success",
         ]);
     }
+
 }
